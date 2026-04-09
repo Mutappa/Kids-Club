@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "A form submission from a parent or aspiring teacher.",
+      "type": "object",
+      "properties": {
+        "parentName": { "type": "string", "description": "Name of the parent" },
+        "childAge": { "type": "string", "description": "Age of the child" },
+        "email": { "type": "string", "format": "email", "description": "Contact email" },
+        "message": { "type": "string", "description": "Detailed message" },
+        "type": { "type": "string", "enum": ["enrollment", "training"], "description": "Type of inquiry" },
+        "status": { "type": "string", "enum": ["new", "read", "archived"], "description": "Status of the inquiry" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the inquiry was submitted" }
+      },
+      "required": ["parentName", "email", "message", "type", "status", "createdAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "A user of the system, potentially an admin.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["admin", "user"] }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/inquiries/{inquiryId}": {
+      "schema": "Inquiry",
+      "description": "Collection of all form submissions."
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and roles."
+    }
+  }
+}
