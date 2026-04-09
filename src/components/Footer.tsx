@@ -10,7 +10,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center mb-6">
               <div className="h-24 flex items-center justify-center overflow-hidden">
                 <img 
-                  src="/src/assets/images/kids club logo.png" 
+                  src="/src/assets/images/kids_club.png" 
                   alt="Kids Club Logo" 
                   className="h-full w-auto object-contain"
                   referrerPolicy="no-referrer"
