@@ -8,9 +8,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="flex items-center mb-6">
-              <div className="h-20 flex items-center justify-center overflow-hidden">
+              <div className="h-24 flex items-center justify-center overflow-hidden">
                 <img 
-                  src="/logo.png" 
+                  src="/src/assets/images/kids club logo.png" 
                   alt="Kids Club Logo" 
                   className="h-full w-auto object-contain"
                   referrerPolicy="no-referrer"
