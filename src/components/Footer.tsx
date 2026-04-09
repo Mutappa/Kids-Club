@@ -28,7 +28,8 @@ export default function Footer() {
               <li><Link to="/about" className="hover:text-quaternary transition-colors">About Us</Link></li>
               <li><Link to="/programs" className="hover:text-quaternary transition-colors">Our Programs</Link></li>
               <li><Link to="/facilities" className="hover:text-quaternary transition-colors">Facilities</Link></li>
-              <li><Link to="/teacher-training" className="hover:text-quaternary transition-colors">Teacher Training</Link></li>
+              <li><Link to="/gallery" className="hover:text-quaternary transition-colors">Gallery</Link></li>
+              <li><Link to="/admin" className="hover:text-gray-400 transition-colors opacity-50">Admin Login</Link></li>
             </ul>
           </div>
 

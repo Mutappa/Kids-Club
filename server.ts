@@ -16,7 +16,7 @@ async function startServer() {
 
   // API Route for Form Submission Integrations (Email + Google Sheets)
   app.post("/api/inquiry-integration", async (req, res) => {
-    const { parentName, email, message, type, childAge } = req.body;
+    const { parentName, email, phone, message, type, childAge } = req.body;
 
     try {
       // 1. Email Notification (Optional - requires SMTP config)
@@ -33,11 +33,12 @@ async function startServer() {
           from: `"Kids Club Website" <${process.env.SMTP_USER}>`,
           to: "muselec52@gmail.com", // Admin email
           subject: `New ${type} Inquiry from ${parentName}`,
-          text: `Name: ${parentName}\nEmail: ${email}\nAge: ${childAge}\nType: ${type}\nMessage: ${message}`,
+          text: `Name: ${parentName}\nEmail: ${email}\nPhone: ${phone}\nAge: ${childAge}\nType: ${type}\nMessage: ${message}`,
           html: `
             <h3>New Inquiry Received</h3>
             <p><strong>Name:</strong> ${parentName}</p>
             <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Child's Age:</strong> ${childAge}</p>
             <p><strong>Type:</strong> ${type}</p>
             <p><strong>Message:</strong> ${message}</p>
@@ -60,6 +61,7 @@ async function startServer() {
           'Date': new Date().toLocaleString(),
           'Parent Name': parentName,
           'Email': email,
+          'Phone': phone,
           'Child Age': childAge,
           'Type': type,
           'Message': message,

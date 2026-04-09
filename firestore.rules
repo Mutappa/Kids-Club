@@ -45,6 +45,7 @@ service cloud.firestore {
       return data.keys().hasAll(['parentName', 'email', 'message', 'type', 'status', 'createdAt']) &&
              data.parentName is string && data.parentName.size() > 0 && data.parentName.size() <= 100 &&
              isValidEmail(data.email) &&
+             (!('phone' in data) || (data.phone is string && data.phone.size() <= 20)) &&
              data.message is string && data.message.size() > 0 && data.message.size() <= 2000 &&
              data.type in ['enrollment', 'training'] &&
              data.status in ['new', 'read', 'archived'] &&

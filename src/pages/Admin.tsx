@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { auth, googleProvider, signInWithPopup, signOut, onAuthStateChanged, db, collection, query, orderBy, onSnapshot, doc, updateDoc, deleteDoc } from '../firebase';
-import { LogIn, LogOut, Trash2, CheckCircle, Clock, Archive, Mail, User, Calendar, Star } from 'lucide-react';
+import { LogIn, LogOut, Trash2, CheckCircle, Clock, Archive, Mail, User, Calendar, Star, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface Inquiry {
   id: string;
   parentName: string;
   email: string;
+  phone?: string;
   childAge: string;
   programInterest?: string;
   message: string;
@@ -19,11 +20,17 @@ export default function Admin() {
   const [user, setUser] = useState<any>(null);
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
 
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
+      if (!user) {
+        setIsAuthorized(true); // Reset on logout
+        setAuthError(null);
+      }
     });
     return () => unsubscribeAuth();
   }, []);
@@ -38,16 +45,24 @@ export default function Admin() {
         ...doc.data()
       })) as Inquiry[];
       setInquiries(data);
+      setIsAuthorized(true);
+    }, (error) => {
+      console.error("Firestore Error:", error);
+      if (error.message.includes("permission-denied")) {
+        setIsAuthorized(false);
+      }
     });
 
     return () => unsubscribeInquiries();
   }, [user]);
 
   const handleLogin = async () => {
+    setAuthError(null);
     try {
       await signInWithPopup(auth, googleProvider);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Login error:", error);
+      setAuthError(error.message || "An unknown error occurred during login.");
     }
   };
 
@@ -77,13 +92,53 @@ export default function Admin() {
             <LogIn className="text-secondary w-10 h-10" />
           </div>
           <h1 className="text-3xl font-display font-bold text-gray-900 mb-4">Admin Access</h1>
-          <p className="text-gray-600 mb-10">Please sign in with your authorized Google account to manage inquiries.</p>
+          <p className="text-gray-600 mb-6">Please sign in with your authorized Google account to manage inquiries.</p>
+          
+          {authError && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-sm text-left">
+              <p className="font-bold mb-1">Login Error:</p>
+              <p>{authError}</p>
+              {authError.includes('unauthorized-domain') && (
+                <p className="mt-2 text-xs text-red-500">
+                  Tip: Make sure you added the preview domains to your Firebase Console under Authentication > Settings > Authorized Domains.
+                </p>
+              )}
+            </div>
+          )}
+
           <button 
             onClick={handleLogin}
             className="w-full py-4 bg-gray-900 text-white rounded-2xl font-bold hover:bg-black transition-all flex items-center justify-center gap-3"
           >
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-6 h-6" alt="Google" />
             Sign in with Google
+          </button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (!isAuthorized) {
+    return (
+      <div className="min-h-[80vh] flex flex-col items-center justify-center bg-gray-50 px-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white p-12 rounded-[3rem] shadow-xl text-center max-w-md w-full border border-gray-100"
+        >
+          <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-8">
+            <LogOut className="text-red-500 w-10 h-10" />
+          </div>
+          <h1 className="text-3xl font-display font-bold text-gray-900 mb-4">Access Denied</h1>
+          <p className="text-gray-600 mb-6">Your account ({user.email}) is not authorized to access the admin panel.</p>
+          <p className="text-sm text-gray-400 mb-10 text-left bg-gray-50 p-4 rounded-xl">
+            If this is your primary email, please contact the developer to grant admin permissions to this account.
+          </p>
+          <button 
+            onClick={handleLogout}
+            className="w-full py-4 bg-gray-200 text-gray-800 rounded-2xl font-bold hover:bg-gray-300 transition-all"
+          >
+            Sign Out & Try Another Account
           </button>
         </motion.div>
       </div>
@@ -133,7 +188,9 @@ export default function Admin() {
                     </span>
                     <div className="flex items-center gap-1 text-gray-400 text-xs">
                       <Calendar size={14} />
-                      {inquiry.createdAt?.toDate().toLocaleString()}
+                      {inquiry.createdAt && typeof inquiry.createdAt.toDate === 'function' 
+                        ? inquiry.createdAt.toDate().toLocaleString() 
+                        : 'Processing...'}
                     </div>
                   </div>
 
@@ -146,6 +203,12 @@ export default function Admin() {
                       <Mail size={18} className="text-gray-400" />
                       {inquiry.email}
                     </div>
+                    {inquiry.phone && (
+                      <div className="flex items-center gap-3 text-gray-600">
+                        <Phone size={18} className="text-gray-400" />
+                        {inquiry.phone}
+                      </div>
+                    )}
                     {inquiry.programInterest && (
                       <div className="flex items-center gap-3 text-quaternary font-medium">
                         <Star size={18} className="text-quaternary/40" />

@@ -9,6 +9,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     parentName: '',
     email: '',
+    phone: '',
     childAge: '',
     programInterest: '',
     message: '',
@@ -36,7 +37,7 @@ export default function Contact() {
       });
 
       setIsSuccess(true);
-      setFormData({ parentName: '', email: '', childAge: '', programInterest: '', message: '', type: 'enrollment' });
+      setFormData({ parentName: '', email: '', phone: '', childAge: '', programInterest: '', message: '', type: 'enrollment' });
     } catch (error) {
       console.error("Submission error:", error);
       alert("There was an error submitting your inquiry. Please try again.");
@@ -163,6 +164,17 @@ export default function Contact() {
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         className="w-full px-5 py-3 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-quaternary/20 focus:border-quaternary outline-none transition-all"
                         placeholder="john@example.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Mobile Phone</label>
+                      <input 
+                        required
+                        type="tel" 
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        className="w-full px-5 py-3 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-quaternary/20 focus:border-quaternary outline-none transition-all"
+                        placeholder="+91 12345 67890"
                       />
                     </div>
                     <div>
