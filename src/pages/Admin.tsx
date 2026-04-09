@@ -100,7 +100,7 @@ export default function Admin() {
               <p>{authError}</p>
               {authError.includes('unauthorized-domain') && (
                 <p className="mt-2 text-xs text-red-500">
-                  Tip: Make sure you added the preview domains to your Firebase Console under Authentication > Settings > Authorized Domains.
+                  Tip: Make sure you added the preview domains to your Firebase Console under Authentication → Settings → Authorized Domains.
                 </p>
               )}
             </div>
