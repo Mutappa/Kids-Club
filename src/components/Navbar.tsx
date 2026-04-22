@@ -28,7 +28,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-inner">
         <div className="navbar-content">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="logo-wrapper">
             <div className="navbar-logo-container">
               <img 
                 src="/logo.png" 
@@ -41,7 +41,7 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <div className="navbar-desktop">
             {navLinks.map((link) => (
-              <div key={link.name} className="relative group">
+              <div key={link.name} className="nav-item group">
                 {link.subLinks ? (
                   <div 
                     className="nav-dropdown-trigger"
@@ -85,7 +85,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="mobile-toggle-wrapper">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="mobile-menu-button"
@@ -109,7 +109,7 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <div key={link.name}>
                   {link.subLinks ? (
-                    <div className="space-y-1">
+                    <div className="spacer-y-1">
                       <div className="mobile-nav-group-title">
                         {link.name}
                       </div>

@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Quicksand", sans-serif;
+
+  /* Theme Colors - Derived from Logo */
+  --color-primary: #1ec1e3;    /* Cyan */
+  --color-secondary: #7762aa;  /* Purple */
+  --color-tertiary: #fedc19;   /* Yellow */
+  --color-quaternary: #df4898; /* Pink */
+  
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #4B5563;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-text-primary bg-white;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+  }
+  a {
+    @apply transition-colors duration-200;
+  }
+  a:hover {
+    color: var(--color-quaternary);
+  }
+}
+
+@layer components {
+  /* Navbar Components */
+  .navbar {
+    @apply fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100;
+  }
+  .navbar-inner {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .navbar-content {
+    @apply flex justify-between h-20 items-center;
+  }
+  .navbar-logo-container {
+    @apply h-16 flex items-center justify-center overflow-hidden;
+  }
+  .navbar-logo {
+    @apply h-full w-auto object-contain;
+  }
+  .navbar-desktop {
+    @apply hidden md:flex items-center space-x-4;
+  }
+  .nav-link {
+    @apply text-gray-600 hover:text-quaternary hover:bg-quaternary/5 px-4 py-2 rounded-full font-medium transition-all duration-200 block;
+  }
+  .nav-dropdown-trigger {
+    @apply flex items-center gap-1 text-gray-600 hover:text-quaternary hover:bg-quaternary/5 px-4 py-2 rounded-full font-medium transition-all duration-200 cursor-pointer relative;
+  }
+  .nav-dropdown-menu {
+    @apply absolute top-full left-0 w-48 bg-white shadow-xl rounded-2xl border border-gray-100 py-2 mt-2;
+  }
+  .nav-dropdown-link {
+    @apply block px-4 py-2 text-sm text-gray-600 hover:bg-quaternary/10 hover:text-quaternary transition-colors;
+  }
+  .mobile-menu-button {
+    @apply text-gray-600 hover:text-quaternary transition-colors;
+  }
+  .mobile-nav {
+    @apply md:hidden bg-white border-b border-gray-100 overflow-hidden;
+  }
+  .mobile-nav-inner {
+    @apply px-4 pt-2 pb-6 space-y-1;
+  }
+  .mobile-nav-link {
+    @apply block px-3 py-2 text-gray-600 hover:bg-quaternary/10 hover:text-quaternary rounded-xl font-medium;
+  }
+  .mobile-nav-group-title {
+    @apply px-3 py-2 text-gray-400 text-xs font-bold uppercase tracking-wider;
+  }
+  .mobile-nav-sublink {
+    @apply block px-6 py-2 text-gray-600 hover:bg-quaternary/10 hover:text-quaternary rounded-xl font-medium;
+  }
+
+  /* Footer Components */
+  .footer {
+    @apply bg-gray-50 border-t border-gray-100 pt-12 pb-6;
+  }
+  .footer-inner {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .footer-grid {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-12;
+  }
+  .footer-brand {
+    @apply col-span-1 md:col-span-1;
+  }
+  .footer-logo-container {
+    @apply h-20 flex items-center justify-center overflow-hidden;
+  }
+  .footer-description {
+    @apply text-gray-500 text-sm leading-relaxed;
+  }
+  .footer-heading {
+    @apply font-display font-bold text-gray-800 mb-6;
+  }
+  .footer-links-list {
+    @apply space-y-4 text-sm text-gray-600;
+  }
+  .footer-link {
+    @apply hover:text-quaternary transition-colors;
+  }
+  .footer-contact-item {
+    @apply flex items-start gap-3;
+  }
+  .footer-contact-item-center {
+    @apply flex items-center gap-3;
+  }
+  .footer-icon {
+    @apply text-quaternary shrink-0;
+  }
+  .footer-social-links {
+    @apply flex gap-4;
+  }
+  .social-icon-btn {
+    @apply w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 hover:text-quaternary hover:border-quaternary/30 transition-all;
+  }
+  .footer-copyright-section {
+    @apply mt-12 pt-6 border-t border-gray-200 text-center text-gray-400 text-xs;
+  }
+
+  /* Global Layout */
+  .app-layout {
+    @apply min-h-screen flex flex-col relative;
+  }
+  .main-content {
+    @apply flex-grow;
+  }
+  .page-loader-container {
+    @apply flex items-center justify-center min-h-[60vh];
+  }
+  .spinner {
+    @apply animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary;
+  }
+
+  /* Components & Common Elements */
+  .quote-block {
+    @apply mb-10 bg-white/30 backdrop-blur-sm p-6 rounded-3xl border border-white/50 max-w-lg italic text-gray-700 text-sm leading-relaxed shadow-sm;
+  }
+  .decorative-dot {
+    @apply absolute rounded-full -z-10 animate-pulse;
+  }
+  
+  /* Forms */
+  .form-container {
+    @apply bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-gray-100;
+  }
+  .form-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+  .form-group {
+    @apply space-y-2;
+  }
+  .form-label {
+    @apply block text-sm font-semibold text-gray-700 ml-1;
+  }
+  .input-wrapper {
+    @apply relative;
+  }
+  .input-icon {
+    @apply absolute left-4 top-1/2 -translate-y-1/2 text-gray-400;
+  }
+  .input-field {
+    @apply w-full pl-12 pr-6 py-4 bg-gray-50/50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all;
+  }
+  .input-textarea {
+    @apply w-full pl-12 pr-6 py-4 bg-gray-50/50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all min-h-[150px] resize-none;
+  }
+  .btn-submit {
+    @apply w-full py-4 bg-secondary text-white rounded-full font-bold hover:bg-secondary/90 transition-all shadow-lg shadow-secondary/20 flex items-center justify-center gap-2;
+  }
+
+  /* Contact Page specific */
+  .contact-info-card {
+    @apply flex items-start gap-5 p-6 bg-white rounded-3xl border border-gray-50 shadow-sm hover:shadow-md transition-shadow;
+  }
+  .contact-icon-wrapper {
+    @apply w-12 h-12 rounded-2xl flex items-center justify-center shrink-0;
+  }
+  .contact-form-wrapper {
+    @apply bg-gray-50 p-10 rounded-[3rem] border border-gray-100;
+  }
+  .form-success-wrapper {
+    @apply text-center py-12;
+  }
+  .success-icon-container {
+    @apply w-20 h-20 bg-tertiary/20 rounded-full flex items-center justify-center mx-auto mb-6;
+  }
+
+  /* Utility replacements for cleaner JSX */
+  .logo-wrapper {
+    @apply flex items-center;
+  }
+  .nav-item {
+    @apply relative;
+  }
+  .mobile-toggle-wrapper {
+    @apply md:hidden;
+  }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .hidden-on-mobile {
+    @apply hidden md:flex;
+  }
+  .spacer-y-1 {
+    @apply space-y-1;
+  }
+
+  /* Footer helpers */
+  .footer-logo-link {
+    @apply flex items-center mb-6;
+  }
+  .footer-admin-link {
+    @apply hover:text-gray-400 transition-colors opacity-50;
+  }
+  .footer-map-container {
+    @apply w-full h-32 rounded-xl overflow-hidden border border-gray-200 mb-4 grayscale hover:grayscale-0 transition-all;
+  }
+  .iframe-base {
+    @apply w-full h-full border-0;
+  }
+
+  /* Section Styles */
+  .hero-simple {
+    @apply relative overflow-hidden py-12 bg-quaternary/10;
+  }
+  .philosophy-card {
+    @apply bg-white p-10 rounded-3xl shadow-sm border border-gray-100;
+  }
+  .image-decorated {
+    @apply rounded-3xl shadow-2xl;
+  }
+  .image-badge {
+    @apply absolute -bottom-6 -right-6 bg-tertiary p-8 rounded-2xl shadow-lg hidden md:block;
+  }
+
+  /* Home Page Components */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl font-display font-bold text-gray-900 mb-8 text-center;
+  }
+  .section-title-left {
+    @apply text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6;
+  }
+  .section-subtitle {
+    @apply text-gray-500 mt-4 max-w-2xl mx-auto text-center;
+  }
+  .section-accent-line {
+    @apply w-20 h-1.5 mx-auto rounded-full;
+  }
+
+  /* Specific Sections Spacing */
+  .programs-section {
+    @apply pb-16 pt-0 bg-secondary/10;
+  }
+  .programs-list-section {
+    @apply py-16 bg-white;
+  }
+  .history-section {
+    @apply py-16 bg-white;
+  }
+  .highlights-section {
+    @apply py-16 bg-gray-50/30;
+  }
+  .updates-section {
+    @apply py-16 bg-white;
+  }
+  .testimonials-section {
+    @apply py-16 bg-white/40 backdrop-blur-sm overflow-hidden;
+  }
+  .philosophy-section {
+    @apply py-16 bg-tertiary/10;
+  }
+  .visit-section {
+    @apply py-16 bg-white;
+  }
+  .faq-section {
+    @apply py-16 bg-gray-50/50;
+  }
+  .teacher-section {
+    @apply py-16 bg-secondary/5 overflow-hidden;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    @apply relative min-h-[600px] flex items-center bg-secondary/10;
+  }
+  .hero-inner {
+    @apply grid md:grid-cols-2 gap-12 items-center py-8;
+  }
+  .hero-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-primary font-medium text-sm mb-6 border border-primary/10;
+  }
+  .hero-title {
+    @apply text-5xl md:text-7xl font-display font-bold text-gray-900 leading-tight mb-6;
+  }
+  .hero-description {
+    @apply text-lg text-gray-600 mb-10 leading-relaxed max-w-lg;
+  }
+  .hero-cta-container {
+    @apply flex flex-wrap gap-4;
+  }
+  .hero-image-container {
+    @apply relative;
+  }
+  .hero-image-wrapper {
+    @apply w-full aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white;
+  }
+  .hero-image {
+    @apply w-full h-full object-cover;
+  }
+  .hero-decorator-1 {
+    @apply absolute -bottom-6 -left-6 w-32 h-32 bg-tertiary rounded-full -z-10 animate-pulse;
+  }
+  .hero-decorator-2 {
+    @apply absolute -top-6 -right-6 w-48 h-48 bg-quaternary rounded-[2rem] -z-10 rotate-12;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center gap-2;
+  }
+  .btn-secondary {
+    @apply px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-full font-bold hover:bg-gray-50 transition-all;
+  }
+
+  /* Program Cards */
+  .program-card-grid {
+    @apply grid md:grid-cols-3 gap-8;
+  }
+  .program-card {
+    @apply p-8 rounded-[2.5rem] hover:scale-105 transition-transform duration-300 flex flex-col items-center gap-4;
+  }
+  .card-icon-container {
+    @apply w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm;
+  }
+
+  /* Highlight Cards */
+  .highlights-grid {
+    @apply grid md:grid-cols-3 gap-8;
+  }
+  .highlights-card {
+    @apply p-10 rounded-[3rem] transition-all duration-300 border border-white;
+  }
+
+  /* Pamphlet Cards */
+  .pamphlet-grid {
+    @apply grid md:grid-cols-2 gap-12;
+  }
+  .pamphlet-card {
+    @apply bg-gray-50 p-4 rounded-[2.5rem] shadow-lg border border-gray-100 overflow-hidden;
+  }
+  .pamphlet-image-wrapper {
+    @apply relative aspect-[3/4] rounded-[2rem] overflow-hidden mb-6;
+  }
+  .pamphlet-image {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+  .pamphlet-card:hover .pamphlet-image {
+    @apply scale-105;
+  }
+  .pamphlet-card:hover .bg-black\/20 {
+    @apply bg-black/0;
+  }
+
+  /* Testimonials */
+  .testimonial-grid {
+    @apply grid md:grid-cols-3 gap-8;
+  }
+  .testimonial-card {
+    @apply bg-gray-50 p-8 rounded-[2.5rem] relative border border-gray-100;
+  }
+  .testimonial-avatar {
+    @apply w-12 h-12 rounded-full object-cover;
+  }
+
+  /* Generic Helpers */
+  .block-center {
+    @apply text-center mb-12;
+  }
+
+  /* Interactive Background Elements */
+  .bg-decorator-layer {
+    @apply pointer-events-none fixed inset-0 z-[-1] overflow-hidden opacity-30;
+  }
+  
+  .bubble {
+    @apply absolute rounded-full border border-white/40 bg-white/10;
+    animation: drift-up var(--duration, 4s) linear infinite;
+    bottom: -100px;
+  }
+  @keyframes drift-up {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.5; }
+    80% { opacity: 0.5; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .cloud-shape {
+    @apply absolute bg-white/60 rounded-full blur-md;
+    animation: drift-horizontal var(--duration, 20s) linear infinite;
+  }
+  @keyframes drift-horizontal {
+    from { transform: translateX(-20vw); }
+    to { transform: translateX(120vw); }
+  }
+
+  .block-shape {
+    @apply absolute opacity-20;
+    animation: float-slow var(--duration, 6s) ease-in-out infinite alternate;
+  }
+  @keyframes float-slow {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(20px, 20px) rotate(15deg); }
+  }
+
+  .kite-tail {
+    @apply absolute w-0.5 h-10 bg-gray-400/30 origin-top;
+    animation: sway 2s ease-in-out infinite alternate;
+  }
+  @keyframes sway {
+    from { transform: rotate(-15deg); }
+    to { transform: rotate(15deg); }
+  }
+}

@@ -1,13 +1,28 @@
 import { motion } from 'motion/react';
-import { Send } from 'lucide-react';
+import { 
+  Star, 
+  Pencil, 
+  Cloud, 
+  Leaf, 
+  Square, 
+  Circle, 
+  Triangle, 
+  BookOpen, 
+  Palette
+} from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const Balloon = ({ color, size, delay, left, duration }: { color: string, size: number, delay: number, left: string, duration: number, key?: string }) => (
+type Theme = 'school' | 'creative' | 'nature';
+
+const FloatingElement = ({ children, delay, left, duration }: { children: React.ReactNode, delay: number, left: string, duration: number }) => (
   <motion.div
     initial={{ y: '110vh', x: 0, opacity: 0 }}
     animate={{ 
       y: '-20vh',
-      x: [0, 20, -20, 0],
-      opacity: [0, 0.4, 0.4, 0]
+      x: [0, 40, -40, 0],
+      opacity: [0, 0.2, 0.2, 0],
+      rotate: [0, 15, -15, 360]
     }}
     transition={{ 
       duration: duration,
@@ -18,71 +33,78 @@ const Balloon = ({ color, size, delay, left, duration }: { color: string, size: 
     className="fixed pointer-events-none z-0"
     style={{ left }}
   >
-    <svg width={size} height={size * 1.2} viewBox="0 0 30 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 0C6.71573 0 0 6.71573 0 15C0 23.2843 6.71573 30 15 30C23.2843 30 30 23.2843 30 15C30 6.71573 23.2843 0 15 0Z" fill={color} />
-      <path d="M15 30L12 35H18L15 30Z" fill={color} />
-      <path d="M15 35C15 35 18 37 18 40" stroke="#999" strokeWidth="1" />
-    </svg>
-  </motion.div>
-);
-
-const PaperPlane = ({ delay, top, duration }: { delay: number, top: string, duration: number, key?: string }) => (
-  <motion.div
-    initial={{ x: '-10vw', y: 0, rotate: 15, opacity: 0 }}
-    animate={{ 
-      x: '110vw',
-      y: [0, -50, 50, 0],
-      opacity: [0, 0.3, 0.3, 0]
-    }}
-    transition={{ 
-      duration: duration,
-      delay: delay,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }}
-    className="fixed pointer-events-none z-0 text-secondary/30"
-    style={{ top }}
-  >
-    <Send size={32} />
+    {children}
   </motion.div>
 );
 
 export default function FloatingBackground() {
-  const balloons = [
-    { color: '#1ec1e3', size: 40, delay: 0, left: '10%', duration: 25 },
-    { color: '#7762aa', size: 30, delay: 5, left: '25%', duration: 30 },
-    { color: '#fedc19', size: 45, delay: 2, left: '45%', duration: 22 },
-    { color: '#df4898', size: 35, delay: 8, left: '65%', duration: 28 },
-    { color: '#1ec1e3', size: 50, delay: 4, left: '85%', duration: 20 },
-    { color: '#7762aa', size: 25, delay: 12, left: '95%', duration: 35 },
+  const [theme, setTheme] = useState<Theme | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const themes: Theme[] = ['school', 'creative', 'nature'];
+    const lastTheme = sessionStorage.getItem('bg-theme') as Theme;
+    
+    let nextTheme: Theme;
+    do {
+      nextTheme = themes[Math.floor(Math.random() * themes.length)];
+    } while (nextTheme === lastTheme && themes.length > 1);
+
+    setTheme(nextTheme);
+    sessionStorage.setItem('bg-theme', nextTheme);
+  }, [location.pathname]); // Change on every navigation
+
+  // Brand Colors
+  const colors = [
+    '#1ec1e3', // Primary (Cyan)
+    '#7762aa', // Secondary (Purple)
+    '#fedc19', // Tertiary (Yellow)
+    '#df4898'  // Quaternary (Pink)
   ];
 
-  const planes = [
-    { delay: 1, top: '15%', duration: 18 },
-    { delay: 6, top: '45%', duration: 22 },
-    { delay: 10, top: '75%', duration: 20 },
-  ];
+  const columns = ['5%', '15%', '25%', '35%', '45%', '55%', '65%', '75%', '85%', '95%'];
+
+  if (!theme) return null;
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-      {balloons.map((b, i) => (
-        <Balloon 
-          key={`balloon-${i}`} 
-          color={b.color}
-          size={b.size}
-          delay={b.delay}
-          left={b.left}
-          duration={b.duration}
-        />
-      ))}
-      {planes.map((p, i) => (
-        <PaperPlane 
-          key={`plane-${i}`} 
-          delay={p.delay}
-          top={p.top}
-          duration={p.duration}
-        />
-      ))}
+    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10 bg-gray-50/10">
+      {columns.map((left, i) => {
+        const delay = i * 2;
+        const duration = 25 + Math.random() * 15;
+        const color = colors[i % colors.length];
+        const size = 28 + Math.random() * 24;
+
+        return (
+          <FloatingElement key={`${theme}-${i}-${location.pathname}`} delay={delay} left={left} duration={duration}>
+            {/* Set 1: School (Detailed Shapes) */}
+            {theme === 'school' && (
+              <>
+                {i % 3 === 0 && <Square size={size} style={{ color }} strokeWidth={2.5} />}
+                {i % 3 === 1 && <Circle size={size} style={{ color }} strokeWidth={2.5} />}
+                {i % 3 === 2 && <Triangle size={size} style={{ color }} strokeWidth={2.5} />}
+              </>
+            )}
+
+            {/* Set 2: Creative (Functional & Fun) */}
+            {theme === 'creative' && (
+              <>
+                {i % 3 === 0 && <Pencil size={size} style={{ color }} strokeWidth={2} />}
+                {i % 3 === 1 && <BookOpen size={size} style={{ color }} strokeWidth={2} />}
+                {i % 3 === 2 && <Palette size={size} style={{ color }} strokeWidth={2} />}
+              </>
+            )}
+
+            {/* Set 3: Nature (Weather & Wonder) */}
+            {theme === 'nature' && (
+              <>
+                {i % 3 === 0 && <Cloud size={size * 1.2} style={{ color }} fill="currentColor" fillOpacity={0.1} strokeWidth={2} />}
+                {i % 3 === 1 && <Leaf size={size} style={{ color }} fill="currentColor" fillOpacity={0.1} strokeWidth={2} />}
+                {i % 3 === 2 && <Star size={size} style={{ color }} fill="currentColor" fillOpacity={0.1} strokeWidth={2} />}
+              </>
+            )}
+          </FloatingElement>
+        );
+      })}
     </div>
   );
 }

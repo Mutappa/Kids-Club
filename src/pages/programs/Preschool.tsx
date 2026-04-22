@@ -1,16 +1,16 @@
 import { motion } from 'motion/react';
-import { Users, CheckCircle2, ArrowRight, Heart, Star, BookOpen } from 'lucide-react';
+import { Users, CheckCircle2, ArrowRight, Heart, Star, BookOpen, Clock, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Preschool() {
   const features = [
-    { title: "Personalized Attention", desc: "Our 1:5 teacher-to-student ratio ensures every child is seen and heard.", icon: <Heart className="text-quaternary" /> },
-    { title: "Holistic Curriculum", desc: "Focusing on cognitive, social, emotional, and physical development.", icon: <Star className="text-tertiary" /> },
-    { title: "Literacy & Numeracy", desc: "Building strong foundations in language and mathematical thinking.", icon: <BookOpen className="text-primary" /> },
+    { title: "Inclusive Environment", desc: "Expert support for all learning styles and individual needs.", icon: <Heart className="text-quaternary" /> },
+    { title: "Holistic & Green", desc: "Focusing on cognitive growth and sustainable life habits through nature-play.", icon: <Star className="text-tertiary" /> },
+    { title: "Safety & Brain Dev", desc: "Building strong neural foundations in a 100% secure, verified child-safe facility.", icon: <ShieldCheck className="text-primary" /> },
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-transparent">
       {/* Hero */}
       <section className="bg-primary/10 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -18,9 +18,15 @@ export default function Preschool() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-primary font-bold text-sm mb-6 border border-primary/20">
-              <Users size={18} />
-              Ages 2 - 5 Years
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-primary font-bold text-sm border border-primary/20">
+                <Users size={18} />
+                Ages 2 - 5 Years
+              </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-secondary font-bold text-sm border border-secondary/20">
+                <Clock size={18} />
+                9:00 AM - 12:30 PM
+              </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-display font-bold text-gray-900 mb-6">
               Preschool <span className="text-primary">Program</span>
@@ -71,9 +77,9 @@ export default function Preschool() {
                 className="rounded-[3rem] shadow-2xl border-8 border-white"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute -bottom-6 -left-6 bg-secondary p-8 rounded-3xl shadow-xl text-white hidden md:block">
-                <p className="text-2xl font-bold">1:5</p>
-                <p className="text-sm opacity-80">Teacher Ratio</p>
+              <div className="absolute -bottom-6 -left-6 bg-secondary p-8 rounded-3xl shadow-xl text-white hidden md:block max-w-[200px] text-center">
+                <p className="text-lg font-bold">Personalized Attention</p>
+                <p className="text-xs opacity-80 mt-1">Nurturing individual potential in every child.</p>
               </div>
             </motion.div>
           </div>

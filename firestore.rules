@@ -32,35 +32,25 @@ service cloud.firestore {
     }
 
     function isAdmin() {
-      return isAuthenticated() && 
-        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
-         (request.auth.token.email == "muselec52@gmail.com" && request.auth.token.email_verified == true));
-    }
-
-    function isValidEmail(email) {
-      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-    }
-
-    function isValidInquiry(data) {
-      return data.keys().hasAll(['parentName', 'email', 'message', 'type', 'status', 'createdAt']) &&
-             data.parentName is string && data.parentName.size() > 0 && data.parentName.size() <= 100 &&
-             isValidEmail(data.email) &&
-             (!('phone' in data) || (data.phone is string && data.phone.size() <= 20)) &&
-             data.message is string && data.message.size() > 0 && data.message.size() <= 2000 &&
-             data.type in ['enrollment', 'training'] &&
-             data.status in ['new', 'read', 'archived'] &&
-             data.createdAt is timestamp;
+      return isAuthenticated() && (
+        request.auth.token.email == "muselec52@gmail.com" ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
     }
 
     // ===============================================================
     // Rules
     // ===============================================================
 
-    match /inquiries/{inquiryId} {
-      // Anyone can submit an inquiry
-      allow create: if isValidInquiry(request.resource.data);
-      
-      // Only admins can read or update inquiries
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Inquiries & Applications
+    match /{collection}/{docId} {
+      allow create: if collection in ['inquiries', 'applications'];
       allow read, update, delete: if isAdmin();
     }
 

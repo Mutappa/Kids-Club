@@ -15,6 +15,20 @@
       },
       "required": ["parentName", "email", "message", "type", "status", "createdAt"]
     },
+    "Application": {
+      "title": "Application",
+      "description": "Legacy application form data.",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "position": { "type": "string" },
+        "bio": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
     "User": {
       "title": "User",
       "description": "A user of the system, potentially an admin.",

@@ -47,10 +47,10 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-transparent">
       {/* Hero */}
-      <section className="bg-secondary/10 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="hero-simple">
+        <div className="section-container text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,7 +82,17 @@ export default function Contact() {
                   <div>
                     <h4 className="font-bold text-gray-800 mb-1">Location</h4>
                     <p className="text-gray-600">Mazgaon, Mumbai, Maharashtra</p>
-                    <p className="text-sm text-quaternary font-medium mt-1">#1 Pre School in Mazgaon</p>
+                    <div className="flex items-center gap-4 mt-2">
+                      <p className="text-sm text-quaternary font-medium">#1 Pre School in Mazgaon</p>
+                      <a 
+                        href="https://www.google.com/maps/place/Kids+Club+by+Nisreen/@18.9713022,72.8398292,829m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3be7cf07592b7ae9:0x2c808e5ad59c769e!8m2!3d18.9712971!4d72.8424041!16s%2Fg%2F11szfx_1f1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-bold text-secondary hover:underline flex items-center gap-1"
+                      >
+                        Get Directions
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -109,7 +119,7 @@ export default function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-gray-50 p-10 rounded-[3rem] border border-gray-100">
+            <div className="contact-form-wrapper">
               {isSuccess ? (
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -132,57 +142,57 @@ export default function Contact() {
                 <>
                   <h3 className="text-2xl font-display font-bold text-gray-900 mb-8">Enrollment Inquiry</h3>
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Parent Name</label>
-                        <input 
-                          required
-                          type="text" 
-                          value={formData.parentName}
-                          onChange={(e) => setFormData({...formData, parentName: e.target.value})}
-                          className="w-full px-5 py-3 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-quaternary/20 focus:border-quaternary outline-none transition-all"
-                          placeholder="John Doe"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Child's Age</label>
-                        <input 
-                          type="text" 
-                          value={formData.childAge}
-                          onChange={(e) => setFormData({...formData, childAge: e.target.value})}
-                          className="w-full px-5 py-3 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-quaternary/20 focus:border-quaternary outline-none transition-all"
-                          placeholder="e.g. 3 years"
-                        />
-                      </div>
+                  <div className="form-grid">
+                    <div className="form-group">
+                      <label className="form-label">Parent Name</label>
+                      <input 
+                        required
+                        type="text" 
+                        value={formData.parentName}
+                        onChange={(e) => setFormData({...formData, parentName: e.target.value})}
+                        className="input-field"
+                        placeholder="John Doe"
+                      />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <div className="form-group">
+                      <label className="form-label">Child's Age</label>
+                      <input 
+                        type="text" 
+                        value={formData.childAge}
+                        onChange={(e) => setFormData({...formData, childAge: e.target.value})}
+                        className="input-field"
+                        placeholder="e.g. 3 years"
+                      />
+                    </div>
+                  </div>
+                    <div className="form-group">
+                      <label className="form-label">Email Address</label>
                       <input 
                         required
                         type="email" 
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        className="w-full px-5 py-3 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-quaternary/20 focus:border-quaternary outline-none transition-all"
+                        className="input-field"
                         placeholder="john@example.com"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Mobile Phone</label>
+                    <div className="form-group">
+                      <label className="form-label">Mobile Phone</label>
                       <input 
                         required
                         type="tel" 
                         value={formData.phone}
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                        className="w-full px-5 py-3 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-quaternary/20 focus:border-quaternary outline-none transition-all"
+                        className="input-field"
                         placeholder="+91 12345 67890"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Program of Interest (Optional)</label>
+                    <div className="form-group">
+                      <label className="form-label">Program of Interest (Optional)</label>
                       <select 
                         value={formData.programInterest}
                         onChange={(e) => setFormData({...formData, programInterest: e.target.value})}
-                        className="w-full px-5 py-3 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-quaternary/20 focus:border-quaternary outline-none transition-all appearance-none cursor-pointer"
+                        className="input-field cursor-pointer appearance-none"
                       >
                         <option value="">Select a program</option>
                         <option value="preschool">Preschool</option>
@@ -190,20 +200,21 @@ export default function Contact() {
                         <option value="reading-circle">Reading Circle</option>
                       </select>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                    <div className="form-group">
+                      <label className="form-label">Message</label>
                       <textarea 
                         required
                         rows={4}
                         value={formData.message}
                         onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        className="w-full px-5 py-3 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-quaternary/20 focus:border-quaternary outline-none transition-all"
+                        className="input-textarea"
                         placeholder="Tell us about your child..."
                       ></textarea>
                     </div>
                     <button 
+                      type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 bg-quaternary text-white rounded-2xl font-bold hover:bg-quaternary/90 transition-all shadow-lg shadow-quaternary/10 flex items-center justify-center gap-2 disabled:opacity-70"
+                      className="btn-submit"
                     >
                       {isSubmitting ? <Loader2 className="animate-spin" /> : <><Send size={18} /> Send Message</>}
                     </button>

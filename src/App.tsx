@@ -25,8 +25,8 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Loading fallback
 const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-[60vh]">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+  <div className="page-loader-container">
+    <div className="spinner"></div>
   </div>
 );
 
@@ -34,10 +34,10 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col relative">
+      <div className="app-layout">
         <FloatingBackground />
         <Navbar />
-        <main className="flex-grow pt-20">
+        <main className="main-content pt-20">
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />

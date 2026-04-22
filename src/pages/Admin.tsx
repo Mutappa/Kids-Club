@@ -38,22 +38,56 @@ export default function Admin() {
   useEffect(() => {
     if (!user) return;
 
-    const q = query(collection(db, 'inquiries'), orderBy('createdAt', 'desc'));
-    const unsubscribeInquiries = onSnapshot(q, (snapshot) => {
-      const data = snapshot.docs.map(doc => ({
+    // We fetch from both collections in case there's data in the old one
+    const qInquiries = query(collection(db, 'inquiries'), orderBy('createdAt', 'desc'));
+    const qApplications = query(collection(db, 'applications'), orderBy('createdAt', 'desc'));
+
+    const unsubInquiries = onSnapshot(qInquiries, (snapshot) => {
+      const inquiryData = snapshot.docs.map(doc => ({
         id: doc.id,
-        ...doc.data()
-      })) as Inquiry[];
-      setInquiries(data);
+        ...doc.data(),
+        source: 'inquiries'
+      })) as any[];
+      
+      setInquiries(prev => {
+        const others = prev.filter(p => (p as any).source !== 'inquiries');
+        const next = [...inquiryData, ...others];
+        return next.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+      });
       setIsAuthorized(true);
     }, (error) => {
-      console.error("Firestore Error:", error);
+      console.error("Inquiries Firestore Error:", error);
       if (error.message.includes("permission-denied")) {
         setIsAuthorized(false);
       }
     });
 
-    return () => unsubscribeInquiries();
+    const unsubApps = onSnapshot(qApplications, (snapshot) => {
+      const appData = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        // Map old application fields to inquiry format if needed
+        parentName: (doc.data() as any).fullName || (doc.data() as any).parentName,
+        message: (doc.data() as any).bio || (doc.data() as any).message,
+        programInterest: (doc.data() as any).position || (doc.data() as any).programInterest,
+        type: (doc.data() as any).type || 'career-inquiry',
+        source: 'applications'
+      })) as any[];
+
+      setInquiries(prev => {
+        const others = prev.filter(p => (p as any).source !== 'applications');
+        const next = [...appData, ...others];
+        return next.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+      });
+    }, (error) => {
+      // Old collection might not even exist or have rules, so we'll be quiet here
+      console.debug("Applications collection fetch ignored or failed:", error.message);
+    });
+
+    return () => {
+      unsubInquiries();
+      unsubApps();
+    };
   }, [user]);
 
   const handleLogin = async () => {
@@ -68,13 +102,15 @@ export default function Admin() {
 
   const handleLogout = () => signOut(auth);
 
-  const updateStatus = async (id: string, status: string) => {
-    await updateDoc(doc(db, 'inquiries', id), { status });
+  const updateStatus = async (inquiry: any, status: string) => {
+    const collectionName = (inquiry as any).source || 'inquiries';
+    await updateDoc(doc(db, collectionName, inquiry.id), { status });
   };
 
-  const deleteInquiry = async (id: string) => {
+  const deleteInquiry = async (inquiry: any) => {
     if (window.confirm("Are you sure you want to delete this inquiry?")) {
-      await deleteDoc(doc(db, 'inquiries', id));
+      const collectionName = (inquiry as any).source || 'inquiries';
+      await deleteDoc(doc(db, collectionName, inquiry.id));
     }
   };
 
@@ -212,7 +248,7 @@ export default function Admin() {
                     {inquiry.programInterest && (
                       <div className="flex items-center gap-3 text-quaternary font-medium">
                         <Star size={18} className="text-quaternary/40" />
-                        Interested in: <span className="capitalize">{inquiry.programInterest.replace('-', ' ')}</span>
+                        {inquiry.type === 'career-inquiry' ? 'Applying for:' : 'Interested in:'} <span className="capitalize">{inquiry.programInterest.replace('-', ' ')}</span>
                       </div>
                     )}
                   </div>
@@ -225,7 +261,7 @@ export default function Admin() {
                 <div className="flex md:flex-col gap-2 shrink-0">
                   {inquiry.status !== 'read' && (
                     <button 
-                      onClick={() => updateStatus(inquiry.id, 'read')}
+                      onClick={() => updateStatus(inquiry, 'read')}
                       className="p-3 bg-tertiary/10 text-tertiary rounded-xl hover:bg-tertiary/20 transition-colors"
                       title="Mark as Read"
                     >
@@ -234,7 +270,7 @@ export default function Admin() {
                   )}
                   {inquiry.status !== 'archived' && (
                     <button 
-                      onClick={() => updateStatus(inquiry.id, 'archived')}
+                      onClick={() => updateStatus(inquiry, 'archived')}
                       className="p-3 bg-gray-50 text-gray-600 rounded-xl hover:bg-gray-100 transition-colors"
                       title="Archive"
                     >
@@ -242,7 +278,7 @@ export default function Admin() {
                     </button>
                   )}
                   <button 
-                    onClick={() => deleteInquiry(inquiry.id)}
+                    onClick={() => deleteInquiry(inquiry)}
                     className="p-3 bg-quaternary/10 text-quaternary rounded-xl hover:bg-quaternary/20 transition-colors"
                     title="Delete"
                   >

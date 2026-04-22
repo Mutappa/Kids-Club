@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Star, CheckCircle2, ArrowRight, Palette, Dumbbell, Microscope } from 'lucide-react';
+import { Star, CheckCircle2, ArrowRight, Palette, Dumbbell, Microscope, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function ActivityClub() {
@@ -10,7 +10,7 @@ export default function ActivityClub() {
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-transparent">
       {/* Hero */}
       <section className="bg-secondary/10 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -18,9 +18,15 @@ export default function ActivityClub() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-secondary font-bold text-sm mb-6 border border-secondary/20">
-              <Star size={18} />
-              After-School Fun
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-secondary font-bold text-sm border border-secondary/20">
+                <Star size={18} />
+                After-School Fun
+              </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-primary font-bold text-sm border border-primary/20">
+                <Clock size={18} />
+                4:30 PM - 6:30 PM
+              </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-display font-bold text-gray-900 mb-6">
               Activity <span className="text-secondary">Club</span>
@@ -43,8 +49,11 @@ export default function ActivityClub() {
               className="lg:order-2"
             >
               <h2 className="text-3xl font-display font-bold text-gray-900 mb-6">Explore, Create, and Play</h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                We provide a wide range of activities that cater to different interests. Whether your child is an aspiring artist, a budding scientist, or just loves to move, there's something for everyone.
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                We provide a wide range of activities that cater to different interests and hidden talents. At Kids Club, we believe that education should be an adventure. Whether your child is an aspiring artist finding their voice through color, a budding scientist uncovering the mysteries of the natural world, or a high-energy dreamer who just loves to move, there's a unique space waiting for them here.
+              </p>
+              <p className="text-gray-600 mb-8 leading-relaxed italic">
+                Our club is more than an after-school program; it's a creative hub where lifelong friendships are formed and confidence is built through hands-on discovery.
               </p>
               <div className="space-y-6">
                 {activities.map((a, i) => (

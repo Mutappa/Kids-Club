@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to="/" className="flex items-center mb-6">
+            <Link to="/" className="footer-logo-link">
               <div className="footer-logo-container">
                 <img 
                   src="/logo.png" 
@@ -28,7 +28,7 @@ export default function Footer() {
               <li><Link to="/programs" className="footer-link">Our Programs</Link></li>
               <li><Link to="/facilities" className="footer-link">Facilities</Link></li>
               <li><Link to="/gallery" className="footer-link">Gallery</Link></li>
-              <li><Link to="/admin" className="hover:text-gray-400 transition-colors opacity-50">Admin Login</Link></li>
+              <li><Link to="/admin" className="footer-admin-link">Admin Login</Link></li>
             </ul>
           </div>
 
@@ -48,6 +48,25 @@ export default function Footer() {
                 <span>info@kidsclubnisreen.com</span>
               </li>
             </ul>
+          </div>
+
+          <div>
+            <h4 className="footer-heading">Find Us</h4>
+            <a 
+              href="https://www.google.com/maps/place/Kids+Club+by+Nisreen/@18.9713022,72.8398292,829m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3be7cf07592b7ae9:0x2c808e5ad59c769e!8m2!3d18.9712971!4d72.8424041!16s%2Fg%2F11szfx_1f1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-map-container block relative group"
+            >
+              <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/5 transition-colors z-10"></div>
+              <iframe 
+                title="Mini Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15091.13961502422!2d72.83946282848529!3d18.963055915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cf99e5a1b32d%3A0xc0f1fdf7983637e7!2sMazagaon%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1713810000000!5m2!1sen!2sin"
+                className="iframe-base pointer-events-none"
+                allowFullScreen
+                loading="lazy"
+              ></iframe>
+            </a>
           </div>
 
           <div>

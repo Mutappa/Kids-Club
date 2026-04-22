@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { BookOpen, CheckCircle2, ArrowRight, Library, Languages, PenTool } from 'lucide-react';
+import { BookOpen, CheckCircle2, ArrowRight, Library, Languages, PenTool, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function ReadingCircle() {
@@ -10,7 +10,7 @@ export default function ReadingCircle() {
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-transparent">
       {/* Hero */}
       <section className="bg-quaternary/10 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -18,9 +18,15 @@ export default function ReadingCircle() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-quaternary font-bold text-sm mb-6 border border-quaternary/20">
-              <BookOpen size={18} />
-              Love for Literature
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-quaternary font-bold text-sm border border-quaternary/20">
+                <BookOpen size={18} />
+                Love for Literature
+              </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-secondary font-bold text-sm border border-secondary/20">
+                <Clock size={18} />
+                Saturdays: 11:00 AM - 1:00 PM
+              </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-display font-bold text-gray-900 mb-6">
               Reading <span className="text-quaternary">Circle</span>
@@ -42,8 +48,11 @@ export default function ReadingCircle() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-display font-bold text-gray-900 mb-6">Unlocking Worlds Through Words</h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                Our Reading Circle is more than just a library. It's a community where children share stories, discuss ideas, and develop the critical thinking skills needed for academic success.
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Our Reading Circle is more than just a library. It's a vibrant community where children share stories, discuss multifaceted ideas, and develop the critical thinking skills needed for lifelong academic success. We believe that reading is the foundational key to all learning, and we make it an interactive, joyful exploration.
+              </p>
+              <p className="text-gray-600 mb-8 leading-relaxed italic">
+                From decoding their first words to analyzing complex narratives, our students are guided by experts who understand the magic of a well-told tale.
               </p>
               <div className="space-y-6">
                 {benefits.map((b, i) => (
