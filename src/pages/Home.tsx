@@ -27,29 +27,29 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-secondary/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <section className="hero-section">
+        <div className="section-container hero-inner">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-primary font-medium text-sm mb-6 border border-primary/10">
-              <Star className="w-4 h-4 fill-primary" />
+            <div className="hero-badge">
+              <Star className="w-4 h-4 fill-brand-primary" />
               Awarded #1 Pre School in Mazgaon
             </div>
-            <h1 className="text-5xl md:text-7xl font-display font-bold text-gray-900 leading-tight mb-6">
+            <h1 className="hero-title">
               Where Every Child <span className="text-primary">Flourishes</span>
             </h1>
-            <p className="text-lg text-gray-600 mb-10 leading-relaxed max-w-lg">
+            <p className="hero-description">
               Dedicated to providing a nurturing environment with over 30 years of expertise. 
               Our personalized 1:5 teacher-to-student ratio ensures your child's unique needs are always met.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/contact" className="px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+            <div className="hero-cta-container">
+              <Link to="/contact" className="btn-primary">
                 Enroll Now <ArrowRight size={20} />
               </Link>
-              <Link to="/programs" className="px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-full font-bold hover:bg-gray-50 transition-all">
+              <Link to="/programs" className="btn-secondary">
                 Explore Programs
               </Link>
             </div>
@@ -59,13 +59,13 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative"
+            className="hero-image-container"
           >
-            <div className="w-full aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
+            <div className="hero-image-wrapper">
               <img 
                 src="https://picsum.photos/seed/school-kids/800/800" 
                 alt="Happy children at Kids Club" 
-                className="w-full h-full object-cover"
+                className="hero-image"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -78,9 +78,9 @@ export default function Home() {
 
       {/* Program Navigation Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12">Our Specialized Programs</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+        <div className="section-container text-center">
+          <h2 className="section-title">Our Specialized Programs</h2>
+          <div className="program-card-grid">
             {[
               { title: "Preschool", path: "/programs#preschool", color: "bg-primary/10 text-primary", icon: <Users /> },
               { title: "Activity Club", path: "/programs#activity-club", color: "bg-secondary/10 text-secondary", icon: <Star /> },
@@ -89,9 +89,9 @@ export default function Home() {
               <Link 
                 key={prog.title}
                 to={prog.path}
-                className={`${prog.color} p-8 rounded-[2.5rem] hover:scale-105 transition-transform duration-300 flex flex-col items-center gap-4`}
+                className={`program-card ${prog.color}`}
               >
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                <div className="card-icon-container">
                   {prog.icon}
                 </div>
                 <span className="text-xl font-bold">{prog.title}</span>
@@ -103,14 +103,14 @@ export default function Home() {
       </section>
 
       {/* Highlights Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">Why Choose Kids Club?</h2>
-            <div className="w-20 h-1.5 bg-primary mx-auto rounded-full" />
+      <section className="highlights-section">
+        <div className="section-container">
+          <div className="block-center">
+            <h2 className="section-title mb-4 text-center">Why Choose Kids Club?</h2>
+            <div className="section-accent-line bg-primary" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="highlights-grid">
             {[
               {
                 icon: <Users className="text-secondary" />,
@@ -134,9 +134,9 @@ export default function Home() {
               <motion.div
                 key={idx}
                 whileHover={{ y: -10 }}
-                className={`${item.color} p-10 rounded-[3rem] transition-all duration-300 border border-white`}
+                className={`highlights-card ${item.color}`}
               >
-                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                <div className="card-icon-container mb-6">
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-3">{item.title}</h3>
@@ -148,24 +148,24 @@ export default function Home() {
       </section>
 
       {/* Latest Updates & Pamphlets */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">Latest Updates & Pamphlets</h2>
-            <div className="w-20 h-1.5 bg-secondary mx-auto rounded-full" />
-            <p className="text-gray-500 mt-6 max-w-2xl mx-auto">Stay informed with our monthly planners and educational portions.</p>
+      <section className="updates-section">
+        <div className="section-container">
+          <div className="block-center">
+            <h2 className="section-title mb-4">Latest Updates & Pamphlets</h2>
+            <div className="section-accent-line bg-secondary" />
+            <p className="section-subtitle">Stay informed with our monthly planners and educational portions.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="pamphlet-grid">
             <motion.div 
               whileHover={{ scale: 1.02 }}
-              className="bg-gray-50 p-4 rounded-[2.5rem] shadow-lg border border-gray-100 overflow-hidden group"
+              className="pamphlet-card"
             >
-              <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden mb-6">
+              <div className="pamphlet-image-wrapper">
                 <img 
                   src="https://picsum.photos/seed/pamphlet1/800/1000" 
                   alt="Weekend Planner" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="pamphlet-image"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300" />
@@ -178,13 +178,13 @@ export default function Home() {
 
             <motion.div 
               whileHover={{ scale: 1.02 }}
-              className="bg-gray-50 p-4 rounded-[2.5rem] shadow-lg border border-gray-100 overflow-hidden group"
+              className="pamphlet-card"
             >
-              <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden mb-6">
+              <div className="pamphlet-image-wrapper">
                 <img 
                   src="https://picsum.photos/seed/pamphlet2/800/1000" 
                   alt="Portion of the Month" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="pamphlet-image"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300" />
@@ -200,13 +200,13 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">What Parents Say</h2>
-            <div className="w-20 h-1.5 bg-tertiary mx-auto rounded-full" />
+        <div className="section-container">
+          <div className="block-center">
+            <h2 className="section-title mb-4">What Parents Say</h2>
+            <div className="section-accent-line bg-tertiary" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="testimonial-grid">
             {testimonials.map((t, idx) => (
               <motion.div
                 key={idx}
@@ -214,12 +214,12 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-gray-50 p-8 rounded-[2.5rem] relative border border-gray-100"
+                className="testimonial-card"
               >
                 <Quote className="absolute top-6 right-8 text-tertiary/20 w-12 h-12" />
                 <p className="text-gray-600 italic mb-8 relative z-10">"{t.text}"</p>
                 <div className="flex items-center gap-4">
-                  <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full object-cover" referrerPolicy="no-referrer" />
+                  <img src={t.image} alt={t.name} className="testimonial-avatar" referrerPolicy="no-referrer" />
                   <div>
                     <h4 className="font-bold text-gray-900">{t.name}</h4>
                     <p className="text-sm text-gray-500">{t.role}</p>
@@ -233,7 +233,7 @@ export default function Home() {
 
       {/* Philosophy Preview */}
       <section className="py-24 bg-tertiary/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+        <div className="section-container grid md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1">
             <img 
               src="https://picsum.photos/seed/nurturing-kids/600/400" 
@@ -243,7 +243,7 @@ export default function Home() {
             />
           </div>
           <div className="order-1 md:order-2">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">Our Nurturing Philosophy</h2>
+            <h2 className="section-title-left">Our Nurturing Philosophy</h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               We believe every child is unique. Our tailored approach ensures that we meet the individual learning needs of each student, allowing them to flourish at their own pace.
             </p>

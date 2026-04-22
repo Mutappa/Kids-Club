@@ -25,27 +25,26 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
+    <nav className="navbar">
+      <div className="navbar-inner">
+        <div className="navbar-content">
           <Link to="/" className="flex items-center">
-            <div className="h-22 flex items-center justify-center overflow-hidden">
+            <div className="navbar-logo-container">
               <img 
-                src="/src/assets/images/kids_club.png" 
+                src="/logo.png" 
                 alt="Kids Club Logo" 
-                className="h-full w-auto object-contain"
-                referrerPolicy="no-referrer"
+                className="navbar-logo"
               />
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="navbar-desktop">
             {navLinks.map((link) => (
               <div key={link.name} className="relative group">
                 {link.subLinks ? (
                   <div 
-                    className="flex items-center gap-1 text-gray-600 hover:text-quaternary hover:bg-quaternary/5 px-4 py-2 rounded-full font-medium transition-all duration-200 cursor-pointer"
+                    className="nav-dropdown-trigger"
                     onMouseEnter={() => setIsProgramsOpen(true)}
                     onMouseLeave={() => setIsProgramsOpen(false)}
                   >
@@ -58,13 +57,13 @@ export default function Navbar() {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
-                          className="absolute top-full left-0 w-48 bg-white shadow-xl rounded-2xl border border-gray-100 py-2 mt-2"
+                          className="nav-dropdown-menu"
                         >
                           {link.subLinks.map((sub) => (
                             <Link
                               key={sub.name}
                               to={sub.path}
-                              className="block px-4 py-2 text-sm text-gray-600 hover:bg-quaternary/10 hover:text-quaternary transition-colors"
+                              className="nav-dropdown-link"
                             >
                               {sub.name}
                             </Link>
@@ -76,7 +75,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     to={link.path}
-                    className="text-gray-600 hover:text-quaternary hover:bg-quaternary/5 px-4 py-2 rounded-full font-medium transition-all duration-200 block"
+                    className="nav-link"
                   >
                     {link.name}
                   </Link>
@@ -89,7 +88,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600 hover:text-quaternary transition-colors"
+              className="mobile-menu-button"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -104,14 +103,14 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
+            className="mobile-nav"
           >
-            <div className="px-4 pt-2 pb-6 space-y-1">
+            <div className="mobile-nav-inner">
               {navLinks.map((link) => (
                 <div key={link.name}>
                   {link.subLinks ? (
                     <div className="space-y-1">
-                      <div className="px-3 py-2 text-gray-400 text-xs font-bold uppercase tracking-wider">
+                      <div className="mobile-nav-group-title">
                         {link.name}
                       </div>
                       {link.subLinks.map((sub) => (
@@ -119,7 +118,7 @@ export default function Navbar() {
                           key={sub.name}
                           to={sub.path}
                           onClick={() => setIsOpen(false)}
-                          className="block px-6 py-2 text-gray-600 hover:bg-quaternary/10 hover:text-quaternary rounded-xl font-medium"
+                          className="mobile-nav-sublink"
                         >
                           {sub.name}
                         </Link>
@@ -129,7 +128,7 @@ export default function Navbar() {
                     <Link
                       to={link.path}
                       onClick={() => setIsOpen(false)}
-                      className="block px-3 py-2 text-gray-600 hover:bg-quaternary/10 hover:text-quaternary rounded-xl font-medium"
+                      className="mobile-nav-link"
                     >
                       {link.name}
                     </Link>
