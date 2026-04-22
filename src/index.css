@@ -6,10 +6,10 @@
   --font-display: "Quicksand", sans-serif;
 
   /* Theme Colors - Derived from Logo */
-  --color-brand-primary: #1ec1e3;    /* Cyan */
-  --color-brand-secondary: #7762aa;  /* Purple */
-  --color-brand-tertiary: #fedc19;   /* Yellow */
-  --color-brand-quaternary: #df4898; /* Pink */
+  --color-primary: #1ec1e3;    /* Cyan */
+  --color-secondary: #7762aa;  /* Purple */
+  --color-tertiary: #fedc19;   /* Yellow */
+  --color-quaternary: #df4898; /* Pink */
   
   --color-text-primary: #1F2937;
   --color-text-secondary: #4B5563;
@@ -147,13 +147,13 @@
 
   /* Hero Section */
   .hero-section {
-    @apply relative min-h-[90vh] flex items-center bg-brand-secondary/10;
+    @apply relative min-h-[90vh] flex items-center bg-secondary/10;
   }
   .hero-inner {
     @apply grid md:grid-cols-2 gap-12 items-center py-20;
   }
   .hero-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-brand-primary font-medium text-sm mb-6 border border-brand-primary/10;
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-primary font-medium text-sm mb-6 border border-primary/10;
   }
   .hero-title {
     @apply text-5xl md:text-7xl font-display font-bold text-gray-900 leading-tight mb-6;
@@ -176,7 +176,7 @@
 
   /* Buttons */
   .btn-primary {
-    @apply px-8 py-4 bg-brand-primary text-white rounded-full font-bold hover:bg-brand-primary/90 transition-all shadow-lg shadow-brand-primary/20 flex items-center gap-2;
+    @apply px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center gap-2;
   }
   .btn-secondary {
     @apply px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-full font-bold hover:bg-gray-50 transition-all;
@@ -231,13 +231,3 @@
     @apply text-center mb-16;
   }
 }
-
-.bg-primary { background-color: var(--color-brand-primary); }
-.bg-secondary { background-color: var(--color-brand-secondary); }
-.bg-tertiary { background-color: var(--color-brand-tertiary); }
-.bg-quaternary { background-color: var(--color-brand-quaternary); }
-
-.text-primary { color: var(--color-brand-primary); }
-.text-secondary { color: var(--color-brand-secondary); }
-.text-tertiary { color: var(--color-brand-tertiary); }
-.text-quaternary { color: var(--color-brand-quaternary); }

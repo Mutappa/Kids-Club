@@ -35,7 +35,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <div className="hero-badge">
-              <Star className="w-4 h-4 fill-brand-primary" />
+              <Star className="w-4 h-4 fill-primary" />
               Awarded #1 Pre School in Mazgaon
             </div>
             <h1 className="hero-title">
