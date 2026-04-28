@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, Send, CheckCircle2, Loader2 } from 'lucide-react';
 import React, { useState } from 'react';
 import { db, collection, addDoc, serverTimestamp } from '../firebase';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,6 +49,10 @@ export default function Contact() {
 
   return (
     <div className="bg-transparent">
+      <SEO 
+        title="Contact & Enrollment Details"
+        description="Get in touch with Kids Club by Nisreen in Mazgaon, Mumbai. Visit our campus, call us at +91 98194 57758, or send an inquiry for preschool and nursery enrollment."
+      />
       {/* Hero */}
       <section className="hero-simple py-12 bg-quaternary/10">
         <div className="section-container text-center">

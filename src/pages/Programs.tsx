@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { BookOpen, Star, Users, CheckCircle2, ArrowRight, Clock, Quote } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 export default function Programs() {
   const programs = [
@@ -62,6 +63,10 @@ export default function Programs() {
 
   return (
     <div className="bg-transparent">
+      <SEO 
+        title="Our Learning Programs"
+        description="Explore our holistic preschool programs, after-school activity club, and reading circle in Mazgaon. Personalized teaching for ages 2-5, STEM activities, and literacy focus."
+      />
       {/* Hero */}
       <section className="hero-simple py-12 bg-primary/10">
         <div className="section-container text-center">

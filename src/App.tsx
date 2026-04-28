@@ -5,6 +5,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingBackground from './components/FloatingBackground';
@@ -33,31 +34,33 @@ const PageLoader = () => (
 
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="app-layout">
-        <FloatingBackground />
-        <Navbar />
-        <main className="main-content pt-20">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/programs" element={<Programs />} />
-              <Route path="/facilities" element={<Facilities />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/programs/preschool" element={<Preschool />} />
-              <Route path="/programs/activity-club" element={<ActivityClub />} />
-              <Route path="/programs/reading-circle" element={<ReadingCircle />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
-        <WhatsAppButton />
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="app-layout">
+          <FloatingBackground />
+          <Navbar />
+          <main className="main-content pt-20">
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/programs" element={<Programs />} />
+                <Route path="/facilities" element={<Facilities />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/programs/preschool" element={<Preschool />} />
+                <Route path="/programs/activity-club" element={<ActivityClub />} />
+                <Route path="/programs/reading-circle" element={<ReadingCircle />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </main>
+          <Footer />
+          <WhatsAppButton />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }

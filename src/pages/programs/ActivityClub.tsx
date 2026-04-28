@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Star, CheckCircle2, ArrowRight, Palette, Dumbbell, Microscope, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../../components/SEO';
 
 export default function ActivityClub() {
   const activities = [
@@ -11,6 +12,10 @@ export default function ActivityClub() {
 
   return (
     <div className="bg-transparent">
+      <SEO 
+        title="After-School Activity Club in Mazgaon"
+        description="Our vibrant Activity Club offers creative arts, gymnastics, yoga, and STEM discovery for children. A fun, supervised environment to explore hobbies and gain new skills."
+      />
       {/* Hero */}
       <section className="bg-secondary/10 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

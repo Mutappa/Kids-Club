@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { BookOpen, CheckCircle2, ArrowRight, Library, Languages, PenTool, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../../components/SEO';
 
 export default function ReadingCircle() {
   const benefits = [
@@ -11,6 +12,10 @@ export default function ReadingCircle() {
 
   return (
     <div className="bg-transparent">
+      <SEO 
+        title="Saturday Reading Circle & Storytelling"
+        description="Fostering a love for literature through guided reading, interactive storytelling, and phonics. Saturday sessions in Mazgaon for ages 2-6 with over 500 books."
+      />
       {/* Hero */}
       <section className="bg-quaternary/10 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

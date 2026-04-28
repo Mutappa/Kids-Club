@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -27,6 +28,10 @@ export default function Gallery() {
 
   return (
     <div className="bg-transparent min-h-screen">
+      <SEO 
+        title="Photo Gallery - School Life & Activities"
+        description="Browse through the joyful moments, creative arts, and outdoor exploration at Kids Club. A visual tour of our facilities and preschool activities in Mazgaon."
+      />
       {/* Hero */}
       <section className="hero-simple py-12 bg-tertiary/10">
         <div className="section-container text-center">

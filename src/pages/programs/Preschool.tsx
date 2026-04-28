@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Users, CheckCircle2, ArrowRight, Heart, Star, BookOpen, Clock, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../../components/SEO';
 
 export default function Preschool() {
   const features = [
@@ -11,6 +12,10 @@ export default function Preschool() {
 
   return (
     <div className="bg-transparent">
+      <SEO 
+        title="Inclusive Preschool Program"
+        description="Our premium preschool in Mazgaon for ages 2-5 offers holistic development, personalized care, and a safe, inclusive environment for neural growth and social skills."
+      />
       {/* Hero */}
       <section className="bg-primary/10 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

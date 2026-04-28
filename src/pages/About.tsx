@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { History, Heart, Target, Sparkles, Sprout, Footprints, MessageCircle, Linkedin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
+import SEO from '../components/SEO';
 
 export default function About() {
   const [teacherIndex, setTeacherIndex] = useState(0);
@@ -20,6 +21,10 @@ export default function About() {
   const prevTeacher = () => setTeacherIndex((prev) => (prev - 1 + teachers.length) % teachers.length);
   return (
     <div className="bg-transparent">
+      <SEO 
+        title="Our Story & Philosophy"
+        description="Learn about our 30-year journey in Mazgaon, Mumbai. Understanding our inclusive, pro-green, and personalized approach to early childhood education."
+      />
       {/* Hero */}
       <section className="hero-simple py-12 bg-primary/10">
         <div className="section-container text-center relative z-10">

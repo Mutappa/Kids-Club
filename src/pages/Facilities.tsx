@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Book, Shield, Clock, Brain, UserCheck } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Facilities() {
   return (
     <div className="bg-transparent">
+      <SEO 
+        title="Safe Learning Spaces & Daycare"
+        description="Our Mazgaon campus features safe learning rooms, an inclusive daycare, and a magical reading room. Designed to spark curiosity and ensure the highest safety for every child."
+      />
       {/* Hero */}
       <section className="hero-simple py-12 bg-secondary/10">
         <div className="section-container text-center">

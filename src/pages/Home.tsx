@@ -6,12 +6,48 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import SEO from '../components/SEO';
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activePamphlet, setActivePamphlet] = useState(0);
   const [activeGreen, setActiveGreen] = useState(0);
   const [selectedPamphlet, setSelectedPamphlet] = useState<string | null>(null);
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Preschool",
+    "name": "Kids Club by Nisreen",
+    "image": "https://picsum.photos/seed/school-kids/800/800",
+    "@id": "",
+    "url": window.location.origin,
+    "telephone": "+91 98194 57758",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "73 Mathar Pakhadi Rd, Mazgaon",
+      "addressLocality": "Mumbai",
+      "postalCode": "400010",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 18.9712971,
+      "longitude": 72.8424041
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "08:00",
+      "closes": "18:00"
+    }
+  };
 
   const greenOutdoors = [
     { 
@@ -117,6 +153,11 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
+      <SEO 
+        title="Nurturing Preschool & Nursery in Mazgaon, Mumbai"
+        description="Experience the best preschool in Mazgaon with 30+ years of expertise. Personalized teaching, safe environment, and inclusive daycare for your child's growth."
+        jsonLd={structuredData}
+      />
       {/* Hero Section */}
       <section className="hero-section">
         <div className="section-container hero-inner pb-0">
