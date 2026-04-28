@@ -63,24 +63,32 @@ export default function Programs() {
   return (
     <div className="bg-transparent">
       {/* Hero */}
-      <section className="hero-simple">
+      <section className="hero-simple py-12 bg-primary/10">
         <div className="section-container text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-display font-bold text-gray-900 mb-6"
           >
-            Our Specialized <span className="text-secondary">Programs</span>
+            Our Learning <span className="text-secondary">Programs</span>
           </motion.h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            A curriculum designed to spark curiosity, build confidence, and prepare children for their future academic journey.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            Our lessons are carefully planned to spark curiosity, build confidence, and prepare children for their future school journey.
           </p>
+          <div className="flex justify-center gap-4">
+            <Link to="/contact" className="bg-primary text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-all">
+              Request Info Pack
+            </Link>
+            <Link to="/gallery" className="bg-white border border-primary text-primary px-8 py-3 rounded-full font-bold shadow-sm hover:bg-primary/5 transition-all">
+              Gallery Preview
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Programs List */}
-      <section className="programs-list-section">
-        <div className="section-container space-y-20">
+      <section className="programs-list-section py-20 bg-white">
+        <div className="section-container space-y-24">
           {programs.map((program, idx) => (
             <div 
               key={program.id} 
@@ -114,11 +122,11 @@ export default function Programs() {
                   ))}
                 </ul>
                 <div className="flex flex-wrap gap-4">
-                  <Link to={program.path} className="btn-primary">
-                    Learn More <ArrowRight size={20} />
+                  <Link to={program.path} className="btn-primary group">
+                    Learn <ArrowRight size={20} className="group-hover:translate-x-1" />
                   </Link>
                   <Link to="/contact" className="btn-secondary">
-                    Inquire Now
+                    Join Us
                   </Link>
                 </div>
               </motion.div>
@@ -137,21 +145,19 @@ export default function Programs() {
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                {/* Decorative background shape */}
-                <div className={`absolute -inset-4 ${program.color} rounded-[3.5rem] -z-10 blur-2xl opacity-50`} />
               </motion.div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Poem Section */}
+      {/* Quote Section */}
       <section className="philosophy-section">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <div className="bg-white/60 p-12 rounded-[3rem] border border-white shadow-sm italic text-gray-700 leading-relaxed relative">
             <Quote className="absolute -top-6 -left-6 w-12 h-12 text-secondary/20 rotate-180" />
             <p className="text-lg md:text-xl relative z-10">
-              "A child is like a butterfly in the wind unknown. Some can fly higher than others, but each one flies the best it can. Why compare one against the other? Each one is DIFFERENT. Each one is SPECIAL. Each one is BEAUTIFUL."
+              "Every child is unique, a beautiful gift to the world."
             </p>
             <Quote className="absolute -bottom-6 -right-6 w-12 h-12 text-secondary/20" />
           </div>
@@ -159,15 +165,20 @@ export default function Programs() {
       </section>
 
       {/* CTA */}
-      <section className="highlights-section">
+      <section className="highlights-section py-20 bg-gray-50/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">Ready to start the journey?</h2>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">Ready to Start?</h2>
           <p className="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
-            We believe in quality over quantity. By keeping our batches small and our focus sharp, we ensure that your child receives the dedication they deserve. Spaces for our upcoming term are filling fast as we prioritize individual attention for every student.
+            Class sizes are small and focus is sharp. Spaces fill fast as we prioritize personal care.
           </p>
-          <Link to="/contact" className="px-10 py-5 bg-primary text-white rounded-full font-bold hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 inline-flex items-center gap-2">
-            Schedule a Visit <ArrowRight size={20} />
-          </Link>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link to="/contact" className="btn-primary">
+              Contact Us <ArrowRight size={20} />
+            </Link>
+            <Link to="/gallery" className="btn-outline-primary px-8 py-4 rounded-full font-bold border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all bg-white shadow-sm">
+              See Gallery <Star size={20} />
+            </Link>
+          </div>
         </div>
       </section>
     </div>

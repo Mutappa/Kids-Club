@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Book, Shield, Clock, Brain, UserCheck } from 'lucide-react';
 
@@ -5,18 +6,26 @@ export default function Facilities() {
   return (
     <div className="bg-transparent">
       {/* Hero */}
-      <section className="hero-simple">
+      <section className="hero-simple py-12 bg-secondary/10">
         <div className="section-container text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-display font-bold text-gray-900 mb-6"
           >
-            Safe Daycare & Facilities
+            Safe Rooms & Learning Spaces
           </motion.h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            A home away from home, equipped with resources that inspire discovery, ensure safety, and promote inclusive brain development.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            A second home for your child, filled with toys and books that spark curiosity, ensure full safety, and help every child learn at their own pace.
           </p>
+          <div className="flex justify-center gap-4">
+            <Link to="/contact" className="bg-secondary text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-all">
+              Book a Campus Tour
+            </Link>
+            <Link to="/gallery" className="bg-white border border-secondary text-secondary px-8 py-3 rounded-full font-bold shadow-sm hover:bg-secondary/5 transition-all">
+              Go to Gallery
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -28,26 +37,23 @@ export default function Facilities() {
               <Shield size={16} />
               Safe & Secure
             </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">Inclusive & Intentional Daycare</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">Inclusive Daycare</h2>
             <p className="text-gray-600 leading-relaxed mb-6">
-              We understand the trust parents place in us. Our daycare facility is designed to be a safe, hygienic, and stimulating environment where all children can flourish irrespective of their learning styles. Every corner is carefully curated to minimize overstimulation while maximizing engagement.
-            </p>
-            <p className="text-gray-600 leading-relaxed mb-8">
-              Under constant, empathetic supervision, children enjoy a space that feels like a second home. We use non-toxic materials and maintain rigorous cleaning protocols to ensure a healthy and happy sanctuary for discovery and rest.
+              A second home for your child. Our daycare facility is designed to be safe, hygienic, and stimulating for all children.
             </p>
             <div className="grid grid-cols-2 gap-6">
               <div className="flex items-start gap-3">
                 <Brain className="text-primary shrink-0" />
                 <div>
-                  <h4 className="font-bold text-gray-800">Brain Development</h4>
-                  <p className="text-sm text-gray-500">Activities mapped to neural milestones.</p>
+                  <h4 className="font-bold text-gray-800">Growth</h4>
+                  <p className="text-sm text-gray-500">Activities for milestones.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <UserCheck className="text-tertiary shrink-0" />
                 <div>
-                  <h4 className="font-bold text-gray-800">Verified Safety</h4>
-                  <p className="text-sm text-gray-500">100% verified staff & CCTV monitoring.</p>
+                  <h4 className="font-bold text-gray-800">Safety</h4>
+                  <p className="text-sm text-gray-500">Verified staff.</p>
                 </div>
               </div>
             </div>
@@ -59,7 +65,7 @@ export default function Facilities() {
           >
             <img 
               src="https://picsum.photos/seed/daycare/600/500" 
-              alt="Safe daycare environment" 
+              alt="Safe daycare" 
               className="rounded-3xl shadow-2xl"
               referrerPolicy="no-referrer"
             />
@@ -88,13 +94,18 @@ export default function Facilities() {
               <Book size={16} />
               Love for Reading
             </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">The Children's Library</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">Our Reading Room</h2>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Our library is a magical corner filled with age-appropriate books that spark imagination and wonder. It's a quiet sanctuary where stories come to life, allowing children to travel to distant lands and meet fascinating characters through the power of words.
+              Our library is a magical corner filled with books that spark imagination and wonder. It's a quiet space where stories come to life, allowing children to learn and explore through the power of words.
             </p>
             <p className="text-gray-600 leading-relaxed mb-8">
-              We hold regular storytelling sessions and interactive reading circles to foster a lifelong love for literature from a very young age. This space is designed to be accessible and inviting, encouraging even our youngest members to pick up a book and explore.
+              We hold regular storytelling sessions and interactive reading circles to help children love books from a very young age. This space is easy to use and inviting, encouraging even our youngest members to pick up a book and explore.
             </p>
+            <div className="mb-8">
+              <Link to="/gallery" className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all">
+                See Our Reading Room <Shield size={18} />
+              </Link>
+            </div>
             <ul className="space-y-4">
               {[
                 "Curated collection of picture books",

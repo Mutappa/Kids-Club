@@ -83,16 +83,16 @@
 
   /* Footer Components */
   .footer {
-    @apply bg-gray-50 border-t border-gray-100 pt-12 pb-6;
+    @apply bg-gray-50 border-t border-gray-100 pt-16 pb-8;
   }
   .footer-inner {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   .footer-grid {
-    @apply grid grid-cols-1 md:grid-cols-4 gap-12;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12;
   }
   .footer-brand {
-    @apply col-span-1 md:col-span-1;
+    @apply col-span-1;
   }
   .footer-logo-container {
     @apply h-20 flex items-center justify-center overflow-hidden;
@@ -101,13 +101,13 @@
     @apply text-gray-500 text-sm leading-relaxed;
   }
   .footer-heading {
-    @apply font-display font-bold text-gray-800 mb-6;
+    @apply font-display font-black text-gray-800 mb-8 text-sm uppercase tracking-widest;
   }
   .footer-links-list {
-    @apply space-y-4 text-sm text-gray-600;
+    @apply space-y-4 text-sm text-gray-500 font-medium;
   }
   .footer-link {
-    @apply hover:text-quaternary transition-colors;
+    @apply hover:text-primary transition-all hover:translate-x-1 inline-block;
   }
   .footer-contact-item {
     @apply flex items-start gap-3;
@@ -119,18 +119,18 @@
     @apply text-quaternary shrink-0;
   }
   .footer-social-links {
-    @apply flex gap-4;
+    @apply flex gap-4 mt-6;
   }
   .social-icon-btn {
     @apply w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 hover:text-quaternary hover:border-quaternary/30 transition-all;
   }
   .footer-copyright-section {
-    @apply mt-12 pt-6 border-t border-gray-200 text-center text-gray-400 text-xs;
+    @apply mt-16 pt-8 border-t border-gray-200 text-center text-gray-400 text-xs;
   }
 
   /* Global Layout */
   .app-layout {
-    @apply min-h-screen flex flex-col relative;
+    @apply min-h-screen flex flex-col relative overflow-x-hidden;
   }
   .main-content {
     @apply flex-grow;
@@ -144,7 +144,7 @@
 
   /* Components & Common Elements */
   .quote-block {
-    @apply mb-10 bg-white/30 backdrop-blur-sm p-6 rounded-3xl border border-white/50 max-w-lg italic text-gray-700 text-sm leading-relaxed shadow-sm;
+    @apply mb-10 bg-white/90 backdrop-blur-md p-6 rounded-3xl border border-white max-w-lg italic text-gray-700 text-[15px] font-normal leading-relaxed shadow-md relative z-10;
   }
   .decorative-dot {
     @apply absolute rounded-full -z-10 animate-pulse;
@@ -231,6 +231,12 @@
   }
 
   /* Section Styles */
+  section {
+    @apply relative;
+  }
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
   .hero-simple {
     @apply relative overflow-hidden py-12 bg-quaternary/10;
   }
@@ -263,39 +269,39 @@
 
   /* Specific Sections Spacing */
   .programs-section {
-    @apply pb-16 pt-0 bg-secondary/10;
+    @apply pb-12 pt-0 bg-secondary/10;
   }
   .programs-list-section {
-    @apply py-16 bg-white;
+    @apply py-12 bg-white/40;
   }
   .history-section {
-    @apply py-16 bg-white;
+    @apply py-12 bg-white/40;
   }
   .highlights-section {
-    @apply py-16 bg-gray-50/30;
+    @apply py-12 bg-gray-50/30;
   }
   .updates-section {
-    @apply py-16 bg-white;
+    @apply py-12 bg-white/40;
   }
   .testimonials-section {
-    @apply py-16 bg-white/40 backdrop-blur-sm overflow-hidden;
+    @apply py-12 bg-white/30 overflow-hidden;
   }
   .philosophy-section {
-    @apply py-16 bg-tertiary/10;
+    @apply py-12 bg-tertiary/10;
   }
   .visit-section {
-    @apply py-16 bg-white;
+    @apply py-12 bg-white/40;
   }
   .faq-section {
-    @apply py-16 bg-gray-50/50;
+    @apply py-12 bg-gray-50/50;
   }
   .teacher-section {
-    @apply py-16 bg-secondary/5 overflow-hidden;
+    @apply py-12 bg-secondary/10 overflow-hidden;
   }
 
   /* Hero Section */
   .hero-section {
-    @apply relative min-h-[600px] flex items-center bg-secondary/10;
+    @apply relative min-h-[600px] bg-secondary/10;
   }
   .hero-inner {
     @apply grid md:grid-cols-2 gap-12 items-center py-8;

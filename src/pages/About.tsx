@@ -1,23 +1,27 @@
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { History, Heart, Target, ChevronLeft, ChevronRight } from 'lucide-react';
+import { History, Heart, Target, Sparkles, Sprout, Footprints, MessageCircle, Linkedin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
 export default function About() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [teacherIndex, setTeacherIndex] = useState(0);
+
   const teachers = [
-    { name: "Nisreen", role: "Founder & Lead Mentor", image: "https://picsum.photos/seed/nisreen/400/400", bio: "Over 30 years of experience in early childhood education. Champion for inclusive and holistic learning." },
-    { name: "Mrs. Fatima", role: "Senior Educator", image: "https://picsum.photos/seed/fatima/400/400", bio: "Specialist in child psychology and creative learning with a focus on neurodiversity." },
-    { name: "Ms. Zara", role: "Activity Coordinator", image: "https://picsum.photos/seed/zara/400/400", bio: "Expert in physical development and STEM activities." },
-    { name: "Mrs. Gupta", role: "Literacy Coach", image: "https://picsum.photos/seed/gupta/400/400", bio: "Dedicated to fostering a love for reading and writing." },
+    { name: "Nisreen Electricwala", role: "Director & Principal", image: "https://picsum.photos/seed/teacher1/400/400", bio: "With over three decades of mastery in early education, she spearheads our mission for inclusive and holistic child development." },
+    { name: "Mrs. Fatima", role: "Senior Mentor", image: "https://picsum.photos/seed/teacher2/400/400", bio: "A specialist in cognitive psychology, focusing on personalized learning pathways for every unique mind." },
+    { name: "Ms. Zara", role: "Activity Coordinator", image: "https://picsum.photos/seed/teacher3/400/400", bio: "Expert in physical development and STEM activities for young explorers." },
+    { name: "Mrs. Gupta", role: "Literacy Coach", image: "https://picsum.photos/seed/teacher4/400/400", bio: "Fostering a love for reading and linguistic skills through storytelling." },
+    { name: "Ms. Anaya", role: "Art Specialist", image: "https://picsum.photos/seed/teacher5/400/400", bio: "Encouraging self-expression through unconventional materials and methods." },
+    { name: "Mr. Rohan", role: "Music & Movement", image: "https://picsum.photos/seed/teacher6/400/400", bio: "Bringing rhythm and joy to learning through daily musical sessions." },
+    { name: "Mrs. Khan", role: "Student Support", image: "https://picsum.photos/seed/teacher7/400/400", bio: "Dedicated to providing personalized assistance for every child's unique needs." },
   ];
 
-  const nextTeacher = () => setCurrentIndex((prev) => (prev + 1) % teachers.length);
-  const prevTeacher = () => setCurrentIndex((prev) => (prev - 1 + teachers.length) % teachers.length);
-
+  const nextTeacher = () => setTeacherIndex((prev) => (prev + 1) % teachers.length);
+  const prevTeacher = () => setTeacherIndex((prev) => (prev - 1 + teachers.length) % teachers.length);
   return (
     <div className="bg-transparent">
       {/* Hero */}
-      <section className="hero-simple">
+      <section className="hero-simple py-12 bg-primary/10">
         <div className="section-container text-center relative z-10">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -29,8 +33,16 @@ export default function About() {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
             Over three decades of dedication to early childhood excellence. We believe in a holistic, inclusive, and green approach to growing young minds.
           </p>
+          <div className="flex justify-center gap-4 mb-10">
+            <Link to="/contact" className="bg-primary text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-all">
+              Join Our Family
+            </Link>
+            <Link to="/gallery" className="bg-white border border-primary text-primary px-8 py-3 rounded-full font-bold shadow-sm hover:bg-primary/5 transition-all">
+              Browse Gallery
+            </Link>
+          </div>
           <div className="quote-block inline-block">
-            "A child is like a butterfly in the wind unknown. Some can fly higher than others, but each one flies the best it can. Why compare one against the other? Each one is DIFFERENT. Each one is SPECIAL. Each one is BEAUTIFUL."
+            "A child is like a butterfly in the wind unknown. Some can fly higher than others, but each one flies the best it can. Why compare one against the other? Each one is <strong>DIFFERENT</strong>. Each one is <strong>SPECIAL</strong>. Each one is <strong>BEAUTIFUL</strong>."
           </div>
         </div>
       </section>
@@ -45,24 +57,29 @@ export default function About() {
           >
             <div className="flex items-center gap-3 text-secondary font-bold mb-4">
               <History size={24} />
-              <span>30 Years of Educational Heritage</span>
+              <span>30 Years of Teaching Kids</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-6">A Legacy of Love & Learning</h2>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-6 font-display">A History of Care & Wisdom</h2>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Founded by Nisreen in the heart of Mazgaon, Kids Club began as a dream to provide children with a transition from home to school that was seamless, nurturing, and deeply rooted in care. Over the last three decades, we have evolved with the changing needs of the community while keeping our core values of empathy and curiosity intact.
+              Established by Nisreen Electricwala in the vibrant community of Mazgaon, Kids Club began as a vision to offer children a smooth transition from the warmth of home to the structured world of school. For thirty years, we have adapted to modern educational needs while staying true to our original principles of kindness and discovery.
             </p>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Our journey started with a small group of children and a commitment to personalized observation. We recognized early on that no two children learn in the same way. This realization led us to become **all-inclusive**, creating specialized pathways for neurodiverse learners, including those on the autism spectrum.
+              Our story evolved from a small initiative into a complete learning center. We understood early on that children are not all the same; each has a different way of learning. This insight led us to embrace **education for everyone**, including neurodiverse learners, with specialized care and attention.
             </p>
-            <p className="text-gray-600 leading-relaxed">
-              Awarded as the #1 Pre School in Mazgaon, we take pride in having mentored generations of successful, kind, and inquisitive individuals. Our legacy is built on the trust of parents who seek a foundation that prioritizes character just as much as curriculum.
+            <p className="text-gray-600 leading-relaxed mb-8">
+              Consistently recognized as an excellent preschool, we take immense pride in having guided generations of kind and bright individuals. Our reputation is built on the trust of families who value character development as much as academic success.
             </p>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/gallery" className="btn-secondary group">
+                See Our Gallery <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </motion.div>
           <div className="relative">
             <img 
               src="https://picsum.photos/seed/history/600/500" 
               alt="Kids Club History" 
-              className="image-decorated"
+              className="image-decorated w-full"
               referrerPolicy="no-referrer"
             />
             <div className="image-badge">
@@ -73,144 +90,204 @@ export default function About() {
         </div>
       </section>
 
-      {/* Philosophy & Sustainability */}
-      <section className="highlights-section">
+      {/* Philosophy */}
+      <section className="philosophy-section">
         <div className="section-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-gray-900 mb-4">Holistic & Pro-Green</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">We nurture not just minds, but the environment and well-being through sustainable practices.</p>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-4">Integrity in Action</h2>
+            <div className="w-20 h-1.5 bg-primary mx-auto rounded-full mb-6" />
+            <p className="text-gray-500 max-w-2xl mx-auto italic">
+              "We don't just teach values; we live them through every interaction and environment we create."
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
-              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-                <Target className="text-green-600" />
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="philosophy-card border-t-4 border-t-secondary hover:shadow-lg transition-all">
+              <div className="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary mb-6">
+                <Heart size={28} />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Sustainability First</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                From recycled materials in our crafts to energy-efficient habits, we teach children the importance of caring for our planet from day one.
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">A Place for Everyone</h3>
+              <p className="text-gray-600 leading-relaxed">
+                We believe in the beauty of being different. Our doors are open to all children, providing a safe and adapted environment for neurodiverse learners. By celebrating differences, we teach our students kindness and understanding from the start.
               </p>
             </div>
-            <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
-              <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
-                <Heart className="text-quaternary" />
+            <div className="philosophy-card border-t-4 border-t-quaternary hover:shadow-lg transition-all">
+              <div className="w-14 h-14 bg-quaternary/10 rounded-2xl flex items-center justify-center text-quaternary mb-6">
+                <Target size={28} />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Neurodiversity Welcome</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Our staff is trained to support children on the autism spectrum. We provide sensory-friendly spaces and tailored interaction methods to ensure everyone thrives.
-              </p>
-            </div>
-            <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
-              <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-6">
-                <History className="text-primary" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Holistic Growth</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                We bridge the gap between academic foundation and emotional intelligence, ensuring children are prepared for both school and life.
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Personalized Learning</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Instead of rigid lessons, we focus on watching and understanding how each child learns. Our small batches allow our teachers to understand each child's own needs, making sure they are challenged enough to grow but always supported enough to feel safe.
               </p>
             </div>
           </div>
         </div>
       </section>
-      {/* Teachers Carousel */}
+
+      {/* Pro-Green & Pro-Outdoors Sections */}
+      <section className="pro-green-section py-16 bg-green-50/20">
+        <div className="section-container">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="relative order-2 md:order-1">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <img src="https://picsum.photos/seed/green1/400/500" alt="Green lifestyle" className="rounded-3xl shadow-lg w-full h-[250px] object-cover" />
+                  <img src="https://picsum.photos/seed/green2/400/300" alt="Outdoor play" className="rounded-3xl shadow-lg w-full h-[150px] object-cover" />
+                </div>
+                <div className="pt-8 space-y-4">
+                  <img src="https://picsum.photos/seed/green3/400/300" alt="Nature learning" className="rounded-3xl shadow-lg w-full h-[150px] object-cover" />
+                  <img src="https://picsum.photos/seed/green4/400/500" alt="Sustainable crafts" className="rounded-3xl shadow-lg w-full h-[250px] object-cover" />
+                </div>
+              </div>
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-green-100 flex items-center gap-4">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                  <Sprout size={24} />
+                </div>
+                <div className="text-sm">
+                  <p className="font-bold text-gray-800">Reduce, Reuse, Recycle</p>
+                  <p className="text-gray-500">Core Environmental Philosophy</p>
+                </div>
+              </div>
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="order-1 md:order-2"
+            >
+              <div className="flex items-center gap-3 text-green-600 font-bold mb-4">
+                <Sprout size={24} />
+                <span>Our Environmental Commitment</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-8 leading-tight">Pro-Green: Cultivating Mindful Citizens</h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Ecological consciousness isn't just an elective at Kids Club; it's our fundamental way of being. We recognize that our students are the future stewards of our planet. Our "Pro-Green" ethos is woven into the very fabric of our school.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 shrink-0 mt-1">
+                    <Sparkles size={20} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 mb-1">Conscious Resource Use</h4>
+                    <p className="text-gray-600 text-sm">We strictly avoid harmful plastics, opting for natural wood, upcycled materials, and organic components in all our interactive tools.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 shrink-0 mt-1">
+                    <Footprints size={20} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 mb-1">Respect for Nature</h4>
+                    <p className="text-gray-600 text-sm mb-6">Students internalize the value of resource conservation, waste reduction, and organic gardening through immersive daily experiences.</p>
+                    <Link to="/gallery" className="text-green-700 font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                      Nature at Kids Club <ChevronRight size={18} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pro-outdoors-section py-16 bg-white">
+        <div className="section-container grid md:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-3 text-primary font-bold mb-4">
+              <Footprints size={24} />
+              <span>Adventurous Spirits</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-8 leading-tight">Pro-Outdoors: Every Day is an Adventure</h2>
+            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              Nature is the best teacher. Our "Pro-Outdoors" philosophy ensures that children aren't confined to four walls. We believe in messy play, dirt under fingernails, and the curious exploration of the outside world.
+            </p>
+            <p className="text-gray-600 mb-8 leading-relaxed">
+              Outdoor learning fosters better motor skills, heightens sensory awareness, and significantly reduces screen dependency. Whether it's our garden exploration or outdoor STEM experiments, we make sure the sky is our only limit.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <div className="px-6 py-3 bg-primary/10 rounded-full text-primary font-bold text-sm">Sensory Gardens</div>
+              <div className="px-6 py-3 bg-secondary/10 rounded-full text-secondary font-bold text-sm">Messy Play Areas</div>
+              <div className="px-6 py-3 bg-quaternary/10 rounded-full text-quaternary font-bold text-sm">Nature Observatories</div>
+            </div>
+          </motion.div>
+          <div className="relative">
+            <img 
+              src="https://picsum.photos/seed/outdoor-learning/800/800" 
+              alt="Outdoor Learning" 
+              className="rounded-[4rem] shadow-2xl border-8 border-white w-full h-[500px] object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Teachers Section */}
       <section className="teacher-section">
         <div className="section-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold text-gray-900 mb-4">Meet Our Dedicated Team</h2>
-            <p className="text-gray-500">The heart and soul of Kids Club.</p>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-4">Meet Our Dedicated Team</h2>
+            <div className="w-20 h-1.5 bg-secondary mx-auto rounded-full mb-6" />
+            <p className="text-gray-500">The heart and soul of Kids Club — mentors who care.</p>
           </div>
 
-          <div className="relative max-w-4xl mx-auto">
-            <div className="flex items-center justify-center">
+          <div className="relative max-w-4xl mx-auto px-12">
+            <div className="relative overflow-hidden h-[500px] md:h-[400px]">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={currentIndex}
+                  key={teacherIndex}
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-gray-100 flex flex-col md:flex-row items-center gap-10"
+                  className="absolute inset-0 bg-white p-8 md:p-12 rounded-[3.5rem] shadow-xl border border-gray-100 flex flex-col md:flex-row items-center gap-10"
                 >
-                  <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-secondary/20 shrink-0">
-                    <img src={teachers[currentIndex].image} alt={teachers[currentIndex].name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  <div className="w-40 h-40 md:w-56 md:h-56 rounded-[2rem] overflow-hidden border-4 border-secondary/20 shrink-0 shadow-lg">
+                    <img 
+                      src={teachers[teacherIndex].image} 
+                      alt={teachers[teacherIndex].name} 
+                      className="w-full h-full object-cover" 
+                      referrerPolicy="no-referrer" 
+                    />
                   </div>
                   <div className="text-center md:text-left">
-                    <h3 className="text-2xl font-display font-bold text-gray-900 mb-1">{teachers[currentIndex].name}</h3>
-                    <p className="text-secondary font-bold mb-4">{teachers[currentIndex].role}</p>
-                    <p className="text-gray-600 leading-relaxed italic">"{teachers[currentIndex].bio}"</p>
+                    <h3 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-1">{teachers[teacherIndex].name}</h3>
+                    <p className="text-secondary font-bold text-lg mb-4">{teachers[teacherIndex].role}</p>
+                    <p className="text-gray-600 leading-relaxed italic text-lg">"{teachers[teacherIndex].bio}"</p>
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
 
             {/* Controls */}
-            <div className="flex justify-center gap-4 mt-10">
-              <button 
-                onClick={prevTeacher}
-                className="p-4 bg-white border border-gray-200 rounded-full text-gray-600 hover:text-secondary hover:border-secondary transition-all shadow-sm"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                onClick={nextTeacher}
-                className="p-4 bg-white border border-gray-200 rounded-full text-gray-600 hover:text-secondary hover:border-secondary transition-all shadow-sm"
-              >
-                <ChevronRight size={24} />
-              </button>
+            <button 
+              onClick={prevTeacher}
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-secondary hover:scale-110 transition-all z-30 border border-gray-100"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button 
+              onClick={nextTeacher}
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-secondary hover:scale-110 transition-all z-30 border border-gray-100"
+            >
+              <ChevronRight size={24} />
+            </button>
+            
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-2 mt-8">
+              {teachers.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setTeacherIndex(idx)}
+                  className={`h-2 transition-all rounded-full ${teacherIndex === idx ? 'w-8 bg-secondary' : 'w-2 bg-secondary/20'}`}
+                />
+              ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="faq-section">
-        <div className="section-container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <div className="w-20 h-1.5 bg-quaternary mx-auto rounded-full mb-6" />
-            <p className="text-gray-500">Everything you need to know about Kids Club.</p>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              { 
-                q: "What are your school timings?", 
-                a: "Our core Preschool hours are 9:30 AM to 1:00 PM. For parents needing extended support, our Daycare services are available until 6:30 PM." 
-              },
-              { 
-                q: "Do you have specific programs for neurodiverse children?", 
-                a: "Yes, being all-inclusive is at the heart of our mission. Many of our students are on the autism spectrum, and we provide specialized sensory-friendly environments and personalized interaction methods to ensure they flourish." 
-              },
-              { 
-                q: "What age can my child join?", 
-                a: "We welcome children into our Playgroup program starting at 2 years of age. Our programs span up to 6 years of age for the Reading Circle." 
-              },
-              { 
-                q: "How does the 'Pro-Green' philosophy work in daily school life?", 
-                a: "We prioritize non-toxic, eco-friendly materials for our toys and crafts. We also teach children sustainable habits like water conservation, composting, and recycling through hands-on daily activities." 
-              },
-              { 
-                q: "What is the transition process from home to school?", 
-                a: "We offer a 'Gentle Start' period where parents can accompany their child for the first few days. This helps build a foundation of trust between the child, the teacher, and the new environment." 
-              }
-            ].map((faq, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100"
-              >
-                <h4 className="text-lg font-bold text-secondary mb-3 flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-xs">Q</span>
-                  {faq.q}
-                </h4>
-                <p className="text-gray-600 leading-relaxed pl-11">
-                  {faq.a}
-                </p>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>

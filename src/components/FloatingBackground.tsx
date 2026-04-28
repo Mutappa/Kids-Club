@@ -67,7 +67,9 @@ export default function FloatingBackground() {
   if (!theme) return null;
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10 bg-gray-50/10">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+      <div className="absolute inset-0 bg-white -z-20"></div>
+      <div className="absolute inset-0 bg-gray-50/10 backdrop-blur-[2px] -z-10"></div>
       {columns.map((left, i) => {
         const delay = i * 2;
         const duration = 25 + Math.random() * 15;

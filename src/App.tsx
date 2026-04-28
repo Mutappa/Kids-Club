@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingBackground from './components/FloatingBackground';
 import ScrollToTop from './components/ScrollToTop';
+import WhatsAppButton from './components/WhatsAppButton';
 
 // Lazy load pages for better performance and smaller initial chunks
 const Home = lazy(() => import('./pages/Home'));
@@ -55,6 +56,7 @@ export default function App() {
           </Suspense>
         </main>
         <Footer />
+        <WhatsAppButton />
       </div>
     </Router>
   );

@@ -49,23 +49,23 @@ export default function Contact() {
   return (
     <div className="bg-transparent">
       {/* Hero */}
-      <section className="hero-simple">
+      <section className="hero-simple py-12 bg-quaternary/10">
         <div className="section-container text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-display font-bold text-gray-900 mb-6"
           >
-            Get in Touch
+            Contact Us
           </motion.h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have questions about enrollment or our programs? We'd love to hear from you.
+            Have questions about our programs or how to join? We'd love to hear from you.
           </p>
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="visit-section">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info */}
             <div>
@@ -81,7 +81,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-800 mb-1">Location</h4>
-                    <p className="text-gray-600">Mazgaon, Mumbai, Maharashtra</p>
+                    <p className="text-gray-600">73 R.Naik Road, Mathar Pakhadi Rd, Mazgaon, Mumbai 400010</p>
                     <div className="flex items-center gap-4 mt-2">
                       <p className="text-sm text-quaternary font-medium">#1 Pre School in Mazgaon</p>
                       <a 
@@ -102,7 +102,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-800 mb-1">Phone</h4>
-                    <p className="text-gray-600">+91 12345 67890</p>
+                    <p className="text-gray-600">+91 98194 57758</p>
                   </div>
                 </div>
 
@@ -112,7 +112,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-800 mb-1">Email</h4>
-                    <p className="text-gray-600">info@kidsclubnisreen.com</p>
+                    <p className="text-gray-600">nisreenkidsclub@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -184,7 +184,7 @@ export default function Contact() {
                         value={formData.phone}
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         className="input-field"
-                        placeholder="+91 12345 67890"
+                        placeholder="+91 98194 57758"
                       />
                     </div>
                     <div className="form-group">
@@ -216,7 +216,7 @@ export default function Contact() {
                       disabled={isSubmitting}
                       className="btn-submit"
                     >
-                      {isSubmitting ? <Loader2 className="animate-spin" /> : <><Send size={18} /> Send Message</>}
+                      {isSubmitting ? <Loader2 className="animate-spin" /> : 'Send Message'}
                     </button>
                   </form>
                 </>

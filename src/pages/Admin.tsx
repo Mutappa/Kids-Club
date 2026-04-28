@@ -203,9 +203,9 @@ export default function Admin() {
               <p className="text-gray-400">No inquiries found yet.</p>
             </div>
           ) : (
-            inquiries.map((inquiry) => (
+            inquiries.map((inquiry: any) => (
               <motion.div 
-                key={inquiry.id}
+                key={`${inquiry.source}-${inquiry.id}`}
                 layout
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

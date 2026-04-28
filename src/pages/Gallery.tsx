@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { X } from 'lucide-react';
@@ -27,23 +28,31 @@ export default function Gallery() {
   return (
     <div className="bg-transparent min-h-screen">
       {/* Hero */}
-      <section className="hero-simple">
+      <section className="hero-simple py-12 bg-tertiary/10">
         <div className="section-container text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-display font-bold text-gray-900 mb-6"
           >
-            Our <span className="text-primary">Gallery</span>
+            Our <span className="text-tertiary">Gallery</span>
           </motion.h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
             A glimpse into the daily life, activities, and special moments at Kids Club.
           </p>
+          <div className="flex justify-center gap-4">
+            <Link to="/contact" className="bg-tertiary text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-all">
+              Book an Appointment
+            </Link>
+            <Link to="/programs" className="bg-white border border-tertiary text-tertiary px-8 py-3 rounded-full font-bold shadow-sm hover:bg-tertiary/5 transition-all">
+              Explore Programs
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Filter */}
-      <section className="py-12 border-b border-gray-100 sticky top-20 bg-white/80 backdrop-blur-md z-40">
+      <section className="py-8 border-b border-gray-100 sticky top-20 bg-white/80 backdrop-blur-md z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map(cat => (
@@ -64,8 +73,8 @@ export default function Gallery() {
       </section>
 
       {/* Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="gallery-section">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredImages.map((img, idx) => (
               <motion.div
