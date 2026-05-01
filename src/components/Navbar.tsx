@@ -31,7 +31,7 @@ export default function Navbar() {
           <Link to="/" className="logo-wrapper">
             <div className="navbar-logo-container">
               <img 
-                src="/logo.png" 
+              src="src\assets\images\logo.png"
                 alt="Kids Club Logo" 
                 className="navbar-logo"
               />
