@@ -11,7 +11,7 @@ export default function Footer() {
             <Link to="/" className="footer-logo-link">
               <div className="footer-logo-container">
                 <img 
-                  src="/logo.png" 
+                  src="/assets/images/logo.png" 
                   alt="Kids Club Logo" 
                   className="navbar-logo"
                 />

@@ -42,7 +42,7 @@
     @apply flex justify-between h-20 items-center;
   }
   .navbar-logo-container {
-    @apply h-16 flex items-center justify-center overflow-hidden;
+    @apply h-25 flex items-center justify-center overflow-hidden;
   }
   .navbar-logo {
     @apply h-full w-auto object-contain;
@@ -95,7 +95,7 @@
     @apply col-span-1;
   }
   .footer-logo-container {
-    @apply h-20 flex items-center justify-center overflow-hidden;
+    @apply h-40 flex items-center justify-center overflow-hidden;
   }
   .footer-description {
     @apply text-gray-500 text-sm leading-relaxed;
