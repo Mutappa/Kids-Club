@@ -120,6 +120,24 @@ export default function Contact() {
                     <p className="text-gray-600">nisreenkidsclub@gmail.com</p>
                   </div>
                 </div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="rounded-3xl overflow-hidden shadow-xl border-4 border-white mt-8 aspect-video"
+                >
+                  <iframe 
+                    title="Kids Club Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.784903565017!2d72.84021542521198!3d18.971297123185387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cf07592b7ae9%3A0x2c808e5ad59c769e!2sKids%20Club%20by%20Nisreen!5e0!3m2!1sen!2sin!4v1714535000000!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </motion.div>
               </div>
             </div>
 

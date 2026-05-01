@@ -2,17 +2,40 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, Star, Users, BookOpen, ShieldCheck, Quote, 
   MapPin, Phone, Mail, Instagram, Facebook, ChevronLeft, 
-  ChevronRight, X, Heart, ExternalLink, Linkedin, MessageCircle
+  ChevronRight, X, Heart, ExternalLink, Linkedin, MessageCircle,
+  Award, HelpCircle, ChevronDown, CheckCircle2, Search
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
+import ProgramFinder from '../components/ProgramFinder';
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activePamphlet, setActivePamphlet] = useState(0);
   const [activeGreen, setActiveGreen] = useState(0);
   const [selectedPamphlet, setSelectedPamphlet] = useState<string | null>(null);
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  const faqs = [
+    {
+      q: "What is the teacher-to-child ratio?",
+      a: "We maintain a low ratio (typically 1:8 or 1:10 depending on age group) to ensure every child gets personalized care and individual attention from our expert mentors."
+    },
+    {
+      q: "How do you support children with different learning needs?",
+      a: "Our curriculum is naturally inclusive. Nisreen's 30+ years of experience specialized in neurodiverse support means we adapt our environment and teaching methods to suit each child's unique developmental pace."
+    },
+    {
+      q: "Is transportation available?",
+      a: "Yes, we facilitate safe and supervised transportation within the Mazgaon and South Mumbai areas. Please contact our office for specific routes."
+    },
+    {
+      q: "What are your school timings?",
+      a: "Our core programs run from 9:00 AM to 1:00 PM. Our Extended Care and Activity Clubs offer sessions until 6:00 PM for working parents."
+    }
+  ];
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -184,11 +207,16 @@ export default function Home() {
               <Link to="/contact" className="btn-primary group whitespace-nowrap">
                 Join Us <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link to="/programs" className="btn-secondary whitespace-nowrap">
+              <motion.button 
+                whileHover={{ scale: 1.05, backgroundColor: '#6b54a0' }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsQuizOpen(true)}
+                className="btn-secondary whitespace-nowrap bg-secondary text-white px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition-all flex items-center gap-2 group shadow-lg"
+              >
+                Find Program <Search size={18} className="group-hover:scale-110 transition-transform" />
+              </motion.button>
+              <Link to="/programs" className="btn-outline-primary px-6 py-3 rounded-full font-bold border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all bg-white shadow-sm whitespace-nowrap">
                 Programs
-              </Link>
-              <Link to="/gallery" className="btn-outline-primary px-6 py-3 rounded-full font-bold border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all bg-white shadow-sm whitespace-nowrap">
-                Gallery
               </Link>
             </div>
           </motion.div>
@@ -541,6 +569,31 @@ export default function Home() {
       {/* Testimonials Section */}
       <section className="testimonials-section py-16 bg-gray-50/50">
         <div className="section-container">
+          {/* Trust Badges */}
+          <div className="mb-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { icon: <Award className="text-secondary" />, title: "30+ Years", desc: "Proven Excellence" },
+              { icon: <ShieldCheck className="text-primary" />, title: "Safe Environment", desc: "CCTV & Security" },
+              { icon: <CheckCircle2 className="text-quaternary" />, title: "Inclusive", desc: "Neurodiverse Friendly" },
+              { icon: <Heart className="text-pink-500" />, title: "Nurturing", desc: "Personalized Care" }
+            ].map((badge, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col items-center text-center p-4 bg-white rounded-3xl shadow-sm border border-white"
+              >
+                <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center mb-3">
+                  {badge.icon}
+                </div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">{badge.title}</h4>
+                <p className="text-xs text-gray-500 font-normal">{badge.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
           <div className="block-center">
             <h2 className="section-title mb-4">Happy Parents</h2>
             <div className="section-accent-line bg-tertiary" />
@@ -622,6 +675,77 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* FAQ Section */}
+      <section className="faq-section py-16 bg-white overflow-hidden">
+        <div className="section-container">
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-3 text-secondary font-bold text-sm mb-4 uppercase tracking-widest italic">
+                <HelpCircle size={20} /> Common Questions
+              </div>
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-8 leading-tight">
+                Everything You Need <span className="text-primary underline decoration-wavy decoration-primary/30">to Know</span>
+              </h2>
+              <p className="text-gray-600 mb-8 leading-relaxed">
+                Choosing the right preschool is a major decision. Here are answers to the most common questions our parents ask about Kids Club.
+              </p>
+              <Link to="/contact" className="btn-outline-primary inline-flex items-center gap-2 px-10 py-4 font-bold border-2 border-primary text-primary rounded-full hover:bg-primary hover:text-white transition-all italic">
+                Ask your own query <ArrowRight size={18} />
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              {faqs.map((faq, idx) => (
+                <div 
+                  key={idx}
+                  className={`rounded-3xl border-2 transition-all duration-300 overflow-hidden ${openFaq === idx ? 'border-primary bg-primary/5 shadow-md' : 'border-gray-50 bg-white hover:border-gray-100'}`}
+                >
+                  <button
+                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                    className="w-full flex items-center justify-between p-6 text-left"
+                  >
+                    <span className={`font-bold transition-colors ${openFaq === idx ? 'text-primary' : 'text-gray-800'}`}>
+                      {faq.q}
+                    </span>
+                    <ChevronDown 
+                      size={20} 
+                      className={`transition-transform duration-300 ${openFaq === idx ? 'rotate-180 text-primary' : 'text-gray-400'}`} 
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {openFaq === idx && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="px-6 pb-6"
+                      >
+                        <p className="text-sm text-gray-600 leading-relaxed font-normal">
+                          {faq.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Program Finder Modal */}
+      <ProgramFinder isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
 
       {/* Visit Us Section */}
       <section className="visit-section py-16 bg-white">

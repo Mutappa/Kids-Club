@@ -1,6 +1,19 @@
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { 
+  Menu, 
+  X, 
+  ChevronDown, 
+  Home as HomeIcon, 
+  Heart, 
+  GraduationCap, 
+  Building2, 
+  Image as ImageIcon, 
+  Phone,
+  Users,
+  Palette,
+  BookOpen
+} from 'lucide-react';
 import { useState } from 'react';
 
 export default function Navbar() {
@@ -8,20 +21,21 @@ export default function Navbar() {
   const [isProgramsOpen, setIsProgramsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
+    { name: 'Home', path: '/', icon: <HomeIcon size={18} /> },
+    { name: 'About Us', path: '/about', icon: <Heart size={18} /> },
     { 
       name: 'Programs', 
       path: '/programs',
+      icon: <GraduationCap size={18} />,
       subLinks: [
-        { name: 'Preschool', path: '/programs/preschool' },
-        { name: 'Activity Club', path: '/programs/activity-club' },
-        { name: 'Reading Circle', path: '/programs/reading-circle' },
+        { name: 'Preschool', path: '/programs/preschool', icon: <Users size={16} /> },
+        { name: 'Activity Club', path: '/programs/activity-club', icon: <Palette size={16} /> },
+        { name: 'Reading Circle', path: '/programs/reading-circle', icon: <BookOpen size={16} /> },
       ]
     },
-    { name: 'Facilities', path: '/facilities' },
-    { name: 'Gallery', path: '/gallery' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Facilities', path: '/facilities', icon: <Building2 size={18} /> },
+    { name: 'Gallery', path: '/gallery', icon: <ImageIcon size={18} /> },
+    { name: 'Contact', path: '/contact', icon: <Phone size={18} /> },
   ];
 
   return (
@@ -31,7 +45,7 @@ export default function Navbar() {
           <Link to="/" className="logo-wrapper">
             <div className="navbar-logo-container">
               <img 
-              src="src\assets\images\logo.png"
+                src="/logo.png" 
                 alt="Kids Club Logo" 
                 className="navbar-logo"
               />
@@ -48,8 +62,11 @@ export default function Navbar() {
                     onMouseEnter={() => setIsProgramsOpen(true)}
                     onMouseLeave={() => setIsProgramsOpen(false)}
                   >
-                    <span>{link.name}</span>
-                    <ChevronDown size={16} className={`transition-transform duration-200 ${isProgramsOpen ? 'rotate-180' : ''}`} />
+                    <span className="flex items-center gap-2">
+                      {link.icon}
+                      {link.name}
+                    </span>
+                    <ChevronDown size={14} className={`transition-transform duration-200 ${isProgramsOpen ? 'rotate-180' : ''}`} />
                     
                     <AnimatePresence>
                       {isProgramsOpen && (
@@ -63,8 +80,11 @@ export default function Navbar() {
                             <Link
                               key={sub.name}
                               to={sub.path}
-                              className="nav-dropdown-link"
+                              className="nav-dropdown-link flex items-center gap-3"
                             >
+                              <span className="text-gray-400 group-hover:text-primary transition-colors">
+                                {sub.icon}
+                              </span>
                               {sub.name}
                             </Link>
                           ))}
@@ -75,8 +95,9 @@ export default function Navbar() {
                 ) : (
                   <Link
                     to={link.path}
-                    className="nav-link"
+                    className="nav-link flex items-center gap-2"
                   >
+                    {link.icon}
                     {link.name}
                   </Link>
                 )}
@@ -110,7 +131,8 @@ export default function Navbar() {
                 <div key={link.name}>
                   {link.subLinks ? (
                     <div className="spacer-y-1">
-                      <div className="mobile-nav-group-title">
+                      <div className="mobile-nav-group-title flex items-center gap-3">
+                        {link.icon}
                         {link.name}
                       </div>
                       {link.subLinks.map((sub) => (
@@ -118,8 +140,9 @@ export default function Navbar() {
                           key={sub.name}
                           to={sub.path}
                           onClick={() => setIsOpen(false)}
-                          className="mobile-nav-sublink"
+                          className="mobile-nav-sublink flex items-center gap-3"
                         >
+                          <span className="text-primary/60">{sub.icon}</span>
                           {sub.name}
                         </Link>
                       ))}
@@ -128,8 +151,9 @@ export default function Navbar() {
                     <Link
                       to={link.path}
                       onClick={() => setIsOpen(false)}
-                      className="mobile-nav-link"
+                      className="mobile-nav-link flex items-center gap-3"
                     >
+                      {link.icon}
                       {link.name}
                     </Link>
                   )}
